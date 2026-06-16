@@ -1,0 +1,66 @@
+2026-06-14 17:55:12,384 - StockMonitor - INFO - 股票监控系统初始化完成
+2026-06-14 17:55:12,384 - StockMonitor - INFO - 开始扫描 2 只股票
+2026-06-14 17:55:12,385 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): push2.eastmoney.com:443
+2026-06-14 17:55:12,534 - EastMoneyScraper - WARNING - 请求失败 (尝试 1/3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:13,541 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): push2.eastmoney.com:443
+2026-06-14 17:55:13,674 - EastMoneyScraper - WARNING - 请求失败 (尝试 2/3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:14,675 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): push2.eastmoney.com:443
+2026-06-14 17:55:14,818 - EastMoneyScraper - WARNING - 请求失败 (尝试 3/3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:14,819 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): push2.eastmoney.com:443
+2026-06-14 17:55:14,954 - EastMoneyScraper - WARNING - 请求失败 (尝试 1/3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:15,955 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (5): push2.eastmoney.com:443
+2026-06-14 17:55:16,128 - EastMoneyScraper - WARNING - 请求失败 (尝试 2/3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:16,262 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (6): push2.eastmoney.com:443
+2026-06-14 17:55:16,406 - EastMoneyScraper - WARNING - 请求失败 (尝试 3/3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:16,407 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): stockpage.10jqka.com.cn:443
+2026-06-14 17:55:16,604 - urllib3.connectionpool - DEBUG - https://stockpage.10jqka.com.cn:443 "GET /600519/ HTTP/1.1" 200 None
+2026-06-14 17:55:16,777 - charset_normalizer - DEBUG - Encoding detection: Found utf_8 as plausible (best-candidate) for content. With 0 alternatives.
+2026-06-14 17:55:16,778 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): d.10jqka.com.cn:80
+2026-06-14 17:55:16,880 - urllib3.connectionpool - DEBUG - http://d.10jqka.com.cn:80 "GET /v2/line/hs_600519/01/last.js HTTP/1.1" 200 None
+2026-06-14 17:55:16,885 - charset_normalizer - DEBUG - Encoding detection: ascii is most likely the one.
+2026-06-14 17:55:16,886 - StockMonitor - DEBUG - 获取到信号: 600519 - tonghuashun
+2026-06-14 17:55:16,887 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 82.push2.eastmoney.com:443
+2026-06-14 17:55:19,375 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 82.push2.eastmoney.com:443
+2026-06-14 17:55:22,719 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 82.push2.eastmoney.com:443
+2026-06-14 17:55:22,897 - AKShareScraper - WARNING - 获取行情数据失败: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:22,898 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): basic.10jqka.com.cn:443
+2026-06-14 17:55:23,078 - urllib3.connectionpool - DEBUG - https://basic.10jqka.com.cn:443 "GET /new/600519/finance.html HTTP/1.1" 301 None
+2026-06-14 17:55:23,079 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): basic.10jqka.com.cn:80
+2026-06-14 17:55:23,208 - urllib3.connectionpool - DEBUG - http://basic.10jqka.com.cn:80 "GET /600519/finance.html HTTP/1.1" 200 None
+2026-06-14 17:55:23,440 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): basic.10jqka.com.cn:443
+2026-06-14 17:55:24,674 - urllib3.connectionpool - DEBUG - https://basic.10jqka.com.cn:443 "GET /api/stock/finance/600519_cash.json HTTP/1.1" 200 None
+2026-06-14 17:55:24,859 - StockMonitor - DEBUG - 获取到信号: 600519 - akshare
+2026-06-14 17:55:28,410 - BaoStockScraper - INFO - BaoStock登录成功
+2026-06-14 17:55:39,954 - StockMonitor - DEBUG - 获取到信号: 600519 - other
+2026-06-14 17:55:39,955 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (7): push2.eastmoney.com:443
+2026-06-14 17:55:40,098 - EastMoneyScraper - WARNING - 请求失败 (尝试 1/3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:41,124 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (8): push2.eastmoney.com:443
+2026-06-14 17:55:41,273 - EastMoneyScraper - WARNING - 请求失败 (尝试 2/3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:42,293 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (9): push2.eastmoney.com:443
+2026-06-14 17:55:42,427 - EastMoneyScraper - WARNING - 请求失败 (尝试 3/3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:42,428 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (10): push2.eastmoney.com:443
+2026-06-14 17:55:42,557 - EastMoneyScraper - WARNING - 请求失败 (尝试 1/3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:43,575 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (11): push2.eastmoney.com:443
+2026-06-14 17:55:43,715 - EastMoneyScraper - WARNING - 请求失败 (尝试 2/3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:44,739 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (12): push2.eastmoney.com:443
+2026-06-14 17:55:44,875 - EastMoneyScraper - WARNING - 请求失败 (尝试 3/3): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:44,954 - urllib3.connectionpool - DEBUG - https://stockpage.10jqka.com.cn:443 "GET /600900/ HTTP/1.1" 200 None
+2026-06-14 17:55:45,027 - charset_normalizer - DEBUG - Encoding detection: utf_8 is most likely the one.
+2026-06-14 17:55:45,075 - urllib3.connectionpool - DEBUG - http://d.10jqka.com.cn:80 "GET /v2/line/hs_600900/01/last.js HTTP/1.1" 200 None
+2026-06-14 17:55:45,081 - charset_normalizer - DEBUG - Encoding detection: ascii is most likely the one.
+2026-06-14 17:55:45,081 - StockMonitor - DEBUG - 获取到信号: 600900 - tonghuashun
+2026-06-14 17:55:45,082 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 82.push2.eastmoney.com:443
+2026-06-14 17:55:47,601 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 82.push2.eastmoney.com:443
+2026-06-14 17:55:50,469 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 82.push2.eastmoney.com:443
+2026-06-14 17:55:50,651 - AKShareScraper - WARNING - 获取行情数据失败: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-06-14 17:55:50,652 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): basic.10jqka.com.cn:443
+2026-06-14 17:55:50,798 - urllib3.connectionpool - DEBUG - https://basic.10jqka.com.cn:443 "GET /new/600900/finance.html HTTP/1.1" 301 None
+2026-06-14 17:55:50,799 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): basic.10jqka.com.cn:80
+2026-06-14 17:55:50,929 - urllib3.connectionpool - DEBUG - http://basic.10jqka.com.cn:80 "GET /600900/finance.html HTTP/1.1" 200 None
+2026-06-14 17:55:51,155 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): basic.10jqka.com.cn:443
+2026-06-14 17:55:52,228 - urllib3.connectionpool - DEBUG - https://basic.10jqka.com.cn:443 "GET /api/stock/finance/600900_cash.json HTTP/1.1" 200 None
+2026-06-14 17:55:52,442 - StockMonitor - DEBUG - 获取到信号: 600900 - akshare
+2026-06-14 17:56:03,953 - StockMonitor - DEBUG - 获取到信号: 600900 - other
+2026-06-14 17:56:03,953 - StockMonitor - INFO - 扫描完成，共获取 2 只股票信号
+2026-06-14 17:56:03,953 - StockMonitor - INFO - 监控系统正在停止...
+2026-06-14 17:56:06,027 - StockMonitor - INFO - 监控系统已停止

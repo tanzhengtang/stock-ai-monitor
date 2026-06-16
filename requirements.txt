@@ -1,0 +1,25 @@
+# 量化交易系统依赖
+
+# 核心依赖
+pandas>=1.5.0
+numpy>=1.23.0
+requests>=2.28.0
+pyyaml>=6.0
+
+# 数据源
+akshare>=1.10.0
+baostock>=0.8.8
+
+# 定时任务
+schedule>=1.2.0
+
+# 交易接口（可选）
+# easytrader>=0.5.0  # 同花顺/通达信
+
+# 大模型（可选）
+# openai>=1.0.0
+# dashscope>=1.0.0  # 阿里通义
+
+# 测试
+pytest>=7.0.0
+pytest-cov>=4.0.0

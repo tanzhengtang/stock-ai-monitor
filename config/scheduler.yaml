@@ -1,0 +1,30 @@
+# 定时任务配置
+
+# 推送方式: 'email' 或 'qq'
+push_type: "email"
+
+# 邮件配置
+email:
+  smtp_server: "smtp.qq.com"
+  smtp_port: 465
+  sender_email: "395267141@qq.com"
+  sender_password: "wrnlnwkhhwsmcbda"
+  receiver_emails:
+    - "tanzhengtang@163.com"
+
+# QQ机器人配置（可选）
+qq_bot:
+  type: "go-cqhttp"
+  webhook_url: ""
+  group_id: ""
+
+# 定时任务配置
+schedule:
+  morning_review: "10:50"
+  afternoon_predict: "15:30"
+
+# 预测配置
+predict:
+  scan_count: 50
+  recommend_count: 10
+  min_score: 60

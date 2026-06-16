@@ -1,0 +1,543 @@
+{
+  "last_update": "2026-06-16T11:54:38.309826",
+  "strategies": [
+    {
+      "name": "rqalpha",
+      "description": "A extendable, replaceable Python algorithmic backtest && trading framework supporting multiple securities",
+      "stars": 6481,
+      "language": "Python",
+      "url": "https://github.com/ricequant/rqalpha",
+      "topics": [
+        "backtest",
+        "finance",
+        "futures",
+        "python",
+        "quant"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 55,
+      "added_date": "2026-06-16T11:54:37.276900"
+    },
+    {
+      "name": "MachineLearningStocks",
+      "description": "Using python and scikit-learn to make stock predictions",
+      "stars": 1949,
+      "language": "Python",
+      "url": "https://github.com/robertmartin8/MachineLearningStocks",
+      "topics": [
+        "algorithmic-trading",
+        "data-science",
+        "guide",
+        "historical-stock-fundamentals",
+        "machine-learning"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 45,
+      "added_date": "2026-06-16T11:54:33.547279"
+    },
+    {
+      "name": "MoniGoMani",
+      "description": "Isn't that what we all want? Our money to go many? Well that's what this framework/strategy hopes to do for you! By giving you & HyperOpt a lot of signals to alter the weights from.",
+      "stars": 1026,
+      "language": "Python",
+      "url": "https://github.com/Rikj000/MoniGoMani",
+      "topics": [
+        "bitcoin",
+        "crypto",
+        "cryptocurrencies",
+        "framework",
+        "freqtrade"
+      ],
+      "strategy_types": [
+        "ma_cross"
+      ],
+      "quality_score": 45,
+      "added_date": "2026-06-16T11:54:34.464429"
+    },
+    {
+      "name": "quant-trading",
+      "description": "Python quantitative trading strategies including VIX Calculator, Pattern Recognition, Commodity Trading Advisor, Monte Carlo, Options Straddle, Shooting Star, London Breakout, Heikin-Ashi, Pair Tradin",
+      "stars": 10092,
+      "language": "Python",
+      "url": "https://github.com/je-suis-tm/quant-trading",
+      "topics": [
+        "algorithmic-trading",
+        "bollinger-bands",
+        "commodity-trading",
+        "macd",
+        "momentum-strategy"
+      ],
+      "strategy_types": [
+        "bollinger",
+        "pattern"
+      ],
+      "quality_score": 40,
+      "added_date": "2026-06-16T11:54:32.572597"
+    },
+    {
+      "name": "QuantDinger",
+      "description": "AI quantitative trading platform for crypto, stocks, and forex with backtesting, live trading, market data, and multi-agent research.vibe-trading ,trading-agents,ai-trader,ai-trading",
+      "stars": 8078,
+      "language": "Python",
+      "url": "https://github.com/brokermr810/QuantDinger",
+      "topics": [
+        "agent",
+        "ai",
+        "alpaca",
+        "backtesting",
+        "binance"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 40,
+      "added_date": "2026-06-16T11:54:32.572623"
+    },
+    {
+      "name": "Options-Trading-Strategies-in-Python",
+      "description": "Developing Options Trading Strategies using Technical Indicators and Quantitative Methods",
+      "stars": 1019,
+      "language": "Python",
+      "url": "https://github.com/PyPatel/Options-Trading-Strategies-in-Python",
+      "topics": [
+        "indicators",
+        "machine-learning",
+        "machine-learning-algorithms",
+        "options-trading",
+        "options-trading-strategies"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 40,
+      "added_date": "2026-06-16T11:54:32.572635"
+    },
+    {
+      "name": "howtrader",
+      "description": "Howtrader: A crypto quant framework for developing, backtesting, and executing your own trading strategies. Seamlessly integrates with TradingView and other third-party signals. Simply send a post req",
+      "stars": 924,
+      "language": "Python",
+      "url": "https://github.com/51bitquant/howtrader",
+      "topics": [
+        "51bitquant",
+        "algo",
+        "binance",
+        "binance-api",
+        "binance-bot"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 40,
+      "added_date": "2026-06-16T11:54:32.572648"
+    },
+    {
+      "name": "LSTM-Neural-Network-for-Time-Series-Prediction",
+      "description": "LSTM built using Keras Python package to predict time series steps and sequences. Includes sin wave and stock market data",
+      "stars": 5205,
+      "language": "Python",
+      "url": "https://github.com/jaungiers/LSTM-Neural-Network-for-Time-Series-Prediction",
+      "topics": [],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 40,
+      "added_date": "2026-06-16T11:54:33.547242"
+    },
+    {
+      "name": "stocksight",
+      "description": "Stock market analyzer and predictor using Elasticsearch, Twitter, News headlines and Python natural language processing and sentiment analysis",
+      "stars": 2502,
+      "language": "Python",
+      "url": "https://github.com/shirosaidev/stocksight",
+      "topics": [
+        "elasticsearch",
+        "natural-language-processing",
+        "nltk",
+        "python",
+        "sentiment"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 40,
+      "added_date": "2026-06-16T11:54:35.321692"
+    },
+    {
+      "name": "pybroker",
+      "description": "Algorithmic Trading in Python with Machine Learning",
+      "stars": 3426,
+      "language": "Python",
+      "url": "https://github.com/edtechre/pybroker",
+      "topics": [
+        "ai",
+        "algorithmic-trading",
+        "algotrading",
+        "artificial-intelligence",
+        "backtesting"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 40,
+      "added_date": "2026-06-16T11:54:37.276933"
+    },
+    {
+      "name": "NowTrade",
+      "description": "Python library for backtesting technical/mechanical strategies in the stock and currency markets",
+      "stars": 102,
+      "language": "Python",
+      "url": "https://github.com/edouardpoitras/NowTrade",
+      "topics": [
+        "algorithmic-trading-library",
+        "currency",
+        "machine-learning",
+        "neural-network",
+        "python"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 35,
+      "added_date": "2026-06-16T11:54:31.560929"
+    },
+    {
+      "name": "trading-strategy",
+      "description": "Python framework for quantitative financial analysis and trading algorithms on decentralised exchanges",
+      "stars": 369,
+      "language": "Python",
+      "url": "https://github.com/tradingstrategy-ai/trading-strategy",
+      "topics": [
+        "algorithmic-trading",
+        "arbitrum",
+        "base-blockchain",
+        "binance",
+        "cryptocurrency"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 35,
+      "added_date": "2026-06-16T11:54:32.572659"
+    },
+    {
+      "name": "bulbea",
+      "description": ":boar: :bear: Deep Learning based Python Library for Stock Market Prediction and Modelling",
+      "stars": 2295,
+      "language": "Python",
+      "url": "https://github.com/achillesrasquinha/bulbea",
+      "topics": [
+        "deep-learning",
+        "finance",
+        "machine-learning",
+        "prediction",
+        "python-library"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 35,
+      "added_date": "2026-06-16T11:54:33.547266"
+    },
+    {
+      "name": "Polymarket-BTC-15-Minute-Trading-Bot",
+      "description": "A production-grade algorithmic trading bot for Polymarket's 15-minute BTC price prediction markets. Built with a 7-phase architecture combining multiple signal sources, professional risk management, a",
+      "stars": 452,
+      "language": "Python",
+      "url": "https://github.com/aulekator/Polymarket-BTC-15-Minute-Trading-Bot",
+      "topics": [
+        "bot",
+        "btc",
+        "polymarket-arbitrage-trading-bot",
+        "python",
+        "trading"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 35,
+      "added_date": "2026-06-16T11:54:34.464468"
+    },
+    {
+      "name": "Awesome-Quant-Machine-Learning-Trading",
+      "description": "Quant/Algorithm trading resources with an emphasis on Machine Learning",
+      "stars": 3694,
+      "language": null,
+      "url": "https://github.com/grananqvist/Awesome-Quant-Machine-Learning-Trading",
+      "topics": [
+        "awesome",
+        "awesome-list",
+        "deep-learning",
+        "financial-machine-learning",
+        "machine-learning"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 35,
+      "added_date": "2026-06-16T11:54:37.276922"
+    },
+    {
+      "name": "algorithmic-trading-with-python",
+      "description": "Source code for Algorithmic Trading with Python (2020) by Chris Conlan",
+      "stars": 3404,
+      "language": "Python",
+      "url": "https://github.com/chrisconlan/algorithmic-trading-with-python",
+      "topics": [],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 35,
+      "added_date": "2026-06-16T11:54:37.276942"
+    },
+    {
+      "name": "python-tradingview-ta",
+      "description": "Unofficial TradingView technical analysis API wrapper.",
+      "stars": 1246,
+      "language": "Python",
+      "url": "https://github.com/AnalyzerREST/python-tradingview-ta",
+      "topics": [
+        "technical-analysis",
+        "tradingview",
+        "tradingview-ta"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 35,
+      "added_date": "2026-06-16T11:54:38.308996"
+    },
+    {
+      "name": "automating-technical-analysis",
+      "description": "Using data analytics alongside popular trading strategies and indicators, to identify best trading actions based solely on the price action.",
+      "stars": 433,
+      "language": "Python",
+      "url": "https://github.com/akurgat/automating-technical-analysis",
+      "topics": [
+        "algorithmic-trading",
+        "autoencoder",
+        "binance",
+        "cryptocurrency",
+        "data-analysis"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 35,
+      "added_date": "2026-06-16T11:54:38.309098"
+    },
+    {
+      "name": "AlphaSuite",
+      "description": "AlphaSuite is an open-source quantitative analysis platform that gives you the power to build, test, and deploy professional-grade trading strategies. It's designed for traders and analysts who want t",
+      "stars": 227,
+      "language": "Python",
+      "url": "https://github.com/rsandx/AlphaSuite",
+      "topics": [
+        "algorithmic-trading",
+        "backtesting",
+        "data-analysis",
+        "fintech",
+        "langchain"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 30,
+      "added_date": "2026-06-16T11:54:32.572672"
+    },
+    {
+      "name": "Stock-Market-Prediction-Web-App-using-Machine-Learning-And-Sentiment-Analysis",
+      "description": "Stock Market Prediction Web App based on Machine Learning and Sentiment Analysis of Tweets (API keys included in code). The front end of the Web App is based on Flask and Wordpress. The App forecasts ",
+      "stars": 886,
+      "language": "Python",
+      "url": "https://github.com/kaushikjadhav01/Stock-Market-Prediction-Web-App-using-Machine-Learning-And-Sentiment-Analysis",
+      "topics": [
+        "alphavantage",
+        "arima",
+        "flask",
+        "keras",
+        "linear-regression"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 30,
+      "added_date": "2026-06-16T11:54:33.547299"
+    },
+    {
+      "name": "IntroNeuralNetworks",
+      "description": "Introducing neural networks to predict stock prices",
+      "stars": 772,
+      "language": "Python",
+      "url": "https://github.com/VivekPa/IntroNeuralNetworks",
+      "topics": [
+        "algorithmic-trading",
+        "data-science",
+        "finance",
+        "guide",
+        "keras-tensorflow"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 30,
+      "added_date": "2026-06-16T11:54:33.547310"
+    },
+    {
+      "name": "AI-Kline",
+      "description": "Python-based stock analysis tool that combines traditional technical analysis with AI prediction capabilities.  Providing comprehensive stock analysis and forecasting using K-line charts, technical in",
+      "stars": 327,
+      "language": "Python",
+      "url": "https://github.com/QuantMLResearch/AI-Kline",
+      "topics": [],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 30,
+      "added_date": "2026-06-16T11:54:33.547321"
+    },
+    {
+      "name": "TensorFlow-stocks-prediction-Machine-learning-RealTime",
+      "description": "Predict operation stocks points (buy-sell) with past technical patterns, and powerful machine-learning libraries such as: Sklearn.RandomForest , Sklearn.GradientBoosting, XGBoost, Google TensorFlow an",
+      "stars": 313,
+      "language": "Python",
+      "url": "https://github.com/Leci37/TensorFlow-stocks-prediction-Machine-learning-RealTime",
+      "topics": [
+        "deep-learning",
+        "machine-learning",
+        "python",
+        "stocks",
+        "tensorflow"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 30,
+      "added_date": "2026-06-16T11:54:33.547335"
+    },
+    {
+      "name": "polymarket-kalshi-weather-bot",
+      "description": "Multi-platform prediction market trading bot: trades weather temperature markets on Kalshi (KXHIGH series) and Polymarket using 31-member GFS ensemble forecasts + BTC 5-min microstructure signals. Kel",
+      "stars": 440,
+      "language": "Python",
+      "url": "https://github.com/suislanchez/polymarket-kalshi-weather-bot",
+      "topics": [
+        "ensemble-forecasting",
+        "fastapi",
+        "kalshi",
+        "kelly-criterion",
+        "polymarket"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 30,
+      "added_date": "2026-06-16T11:54:34.464485"
+    },
+    {
+      "name": "MT4-MT5-Forex-Signal-Copier-Telegram-Bot",
+      "description": "Telegram bot used for copying and entering signals from signal provider directly to MT4 and MT5 trading accounts with calculated lot sizes and profit/loss display",
+      "stars": 234,
+      "language": "Python",
+      "url": "https://github.com/ogunjobiFX/MT4-MT5-Forex-Signal-Copier-Telegram-Bot",
+      "topics": [
+        "bot",
+        "copytrade",
+        "forex",
+        "forex-trading",
+        "forex-trading-bot"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 30,
+      "added_date": "2026-06-16T11:54:34.464497"
+    },
+    {
+      "name": "A-Deep-Learning-Based-Illegal-Insider-Trading-Detection-and-Prediction-Technique-in-Stock-Market",
+      "description": "Illegal insider trading of stocks is based on releasing non-public information (e.g., new product launch, quarterly financial report, acquisition or merger plan) before the information is made public.",
+      "stars": 119,
+      "language": "Python",
+      "url": "https://github.com/SheikhRabiul/A-Deep-Learning-Based-Illegal-Insider-Trading-Detection-and-Prediction-Technique-in-Stock-Market",
+      "topics": [
+        "keras",
+        "lstm-neural-networks",
+        "matlab-script",
+        "python",
+        "tensorflow"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 30,
+      "added_date": "2026-06-16T11:54:34.464521"
+    },
+    {
+      "name": "Python-NSE-Option-Chain-Analyzer",
+      "description": "The NSE has a website which displays the option chain in near real-time. This program retrieves this data from the NSE site and then generates useful analysis of the Option Chain for the specified Ind",
+      "stars": 628,
+      "language": "Python",
+      "url": "https://github.com/VarunS2002/Python-NSE-Option-Chain-Analyzer",
+      "topics": [
+        "analysis",
+        "app",
+        "derivatives",
+        "dharaskar",
+        "equity"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 30,
+      "added_date": "2026-06-16T11:54:35.321754"
+    },
+    {
+      "name": "zipline",
+      "description": "Zipline, a Pythonic Algorithmic Trading Library",
+      "stars": 19877,
+      "language": "Python",
+      "url": "https://github.com/quantopian/zipline",
+      "topics": [
+        "algorithmic-trading",
+        "python",
+        "quant",
+        "zipline"
+      ],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 30,
+      "added_date": "2026-06-16T11:54:37.276873"
+    },
+    {
+      "name": "pyalgotrade",
+      "description": "Python Algorithmic Trading Library",
+      "stars": 4659,
+      "language": "Python",
+      "url": "https://github.com/gbeced/pyalgotrade",
+      "topics": [],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 30,
+      "added_date": "2026-06-16T11:54:37.276910"
+    },
+    {
+      "name": "tulipy",
+      "description": "[NOT ACTIVELY MAINTAINED] Tulipy - Financial Technical Analysis Indicator Library (Python bindings for Tulip Charts)",
+      "stars": 374,
+      "language": "Python",
+      "url": "https://github.com/TulipCharts/tulipy",
+      "topics": [],
+      "strategy_types": [
+        "other"
+      ],
+      "quality_score": 30,
+      "added_date": "2026-06-16T11:54:38.309109"
+    }
+  ]
+}
