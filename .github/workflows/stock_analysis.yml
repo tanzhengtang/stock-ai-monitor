@@ -31,7 +31,9 @@ env:
 jobs:
   scan-stocks:
     runs-on: ubuntu-latest
-    if: github.event.schedule == '30 7 * * 1-5' || github.event.inputs.task == 'scan'
+    if: >-
+      github.event_name == 'schedule' && github.event.schedule == '30 7 * * 1-5' 
+      || github.event_name == 'workflow_dispatch' && github.event.inputs.task == 'scan'
     
     steps:
       - name: Checkout code
@@ -55,7 +57,9 @@ jobs:
 
   refresh-pool:
     runs-on: ubuntu-latest
-    if: github.event.schedule == '0 18 * * *' || github.event.inputs.task == 'refresh'
+    if: >-
+      github.event_name == 'schedule' && github.event.schedule == '0 18 * * *' 
+      || github.event_name == 'workflow_dispatch' && github.event.inputs.task == 'refresh'
     
     steps:
       - name: Checkout code
@@ -84,7 +88,7 @@ jobs:
 
   test-email:
     runs-on: ubuntu-latest
-    if: github.event.inputs.task == 'test'
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.task == 'test'
     
     steps:
       - name: Checkout code
