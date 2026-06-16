@@ -123,13 +123,42 @@ def run_scan():
     predictor = StockPredictor()
     print(f"股票池: {len(predictor.stock_pool)} 只股票")
     
-    # 扫描
-    all_results = predictor.scan_all_sectors(max_per_sector=0)
-    total = sum(len(r) for r in all_results.values())
-    print(f"扫描完成: {total} 只股票")
+    # 扫描全A股（3000只）
+    results = predictor.scan_all_stocks(min_score=55, max_stocks=3000)
+    print(f"扫描完成: {len(results)} 只股票评分 >= 55")
     
     # 生成报告
-    report = predictor.generate_full_report(all_results, top_per_sector=5)
+    report = f'''
+{'='*60}
+🔮 【全A股预测报告】{datetime.now().strftime('%Y-%m-%d %H:%M')}
+{'='*60}
+
+📊 扫描概况：
+   股票总数: {len(predictor.stock_pool)} 只
+   有效信号: {len(results)} 只
+
+{'='*60}
+🏆 TOP 20 推荐股票
+{'='*60}
+'''
+    
+    for i, stock in enumerate(results[:20], 1):
+        expected = stock.get('expected_move', {})
+        report += f'''
+{i:2d}. {stock['code']} {stock['name']}
+    现价: {stock['price']:.2f}  涨跌: {stock['change']:+.2f}%
+    评分: {stock['score']:.0f}  信号: {stock['reasons']}
+    预期涨幅: {expected.get('expected_pct', 0):+.2f}%
+    目标价: {expected.get('target_price', 0):.2f}  止损价: {expected.get('stop_loss', 0):.2f}
+'''
+    
+    report += f'''
+{'='*60}
+⚠️ 免责声明
+{'='*60}
+以上分析仅供参考，不构成投资建议。
+投资有风险，入市需谨慎。
+'''
     
     # 发送邮件
     subject = f'📊 全A股扫描报告 - {datetime.now().strftime("%Y-%m-%d")}'

@@ -867,13 +867,13 @@ class StockPredictor:
         
         return all_results
 
-    def scan_all_stocks(self, min_score: int = 55, max_stocks: int = 100) -> List[Dict]:
+    def scan_all_stocks(self, min_score: int = 55, max_stocks: int = 1000) -> List[Dict]:
         """
         扫描全A股
         
         Args:
             min_score: 最低评分
-            max_stocks: 最大返回数量
+            max_stocks: 最大扫描数量
             
         Returns:
             符合条件的股票列表
@@ -888,32 +888,72 @@ class StockPredictor:
         realtime_data = self._get_realtime_batch(all_codes)
         self.logger.info(f"获取到 {len(realtime_data)} 只股票实时数据")
         
-        # 分析股票
-        results = []
-        count = 0
-        
+        # 第一轮：快速筛选
+        candidates = []
         for code, name in self.stock_pool.items():
             if code not in realtime_data:
                 continue
             
-            # 获取历史数据（只获取评分可能较高的）
-            change_pct = realtime_data[code].get('change_pct', 0)
-            if change_pct < -5:  # 跌幅太大的跳过
+            realtime = realtime_data[code]
+            change_pct = realtime.get('change_pct', 0)
+            
+            # 快速过滤：跌幅太大的跳过
+            if change_pct < -5:
                 continue
             
+            # 快速评分
+            quick_score = 50
+            if 0 < change_pct < 3:
+                quick_score += 8
+            if realtime['price'] > realtime['open'] and change_pct > 0:
+                quick_score += 5
+            
+            candidates.append({
+                'code': code,
+                'name': name,
+                'realtime': realtime,
+                'quick_score': quick_score
+            })
+        
+        # 按快速评分排序，限制数量
+        candidates.sort(key=lambda x: x['quick_score'], reverse=True)
+        candidates = candidates[:max_stocks]
+        
+        self.logger.info(f"快速筛选: {len(candidates)} 只股票进入深度分析")
+        
+        # 第二轮：深度分析
+        results = []
+        for i, candidate in enumerate(candidates):
+            code = candidate['code']
+            name = candidate['name']
+            realtime = candidate['realtime']
+            
+            # 获取历史数据
             history = self._get_history_data(code)
             
             # 分析
-            result = self.analyze_stock(code, name, realtime_data[code], history)
+            result = self.analyze_stock(code, name, realtime, history)
             if result and result['score'] >= min_score:
                 results.append(result)
             
-            count += 1
-            if count % 100 == 0:
-                self.logger.info(f"已分析 {count} 只股票")
+            if (i + 1) % 100 == 0:
+                self.logger.info(f"已分析 {i + 1}/{len(candidates)} 只")
         
         # 按评分排序
         results.sort(key=lambda x: x['score'], reverse=True)
+        
+        # 记录预测
+        predictions = [{
+            'code': s['code'],
+            'name': s['name'],
+            'score': s['score'],
+            'strategy_signals': s['strategy_signals']
+        } for s in results]
+        self.evaluator.record_prediction(predictions)
+        
+        self.logger.info(f"扫描完成: {len(results)} 只股票评分 >= {min_score}")
+        
+        return results
         
         self.logger.info(f"全A股扫描完成: {len(results)} 只股票评分 >= {min_score}")
         

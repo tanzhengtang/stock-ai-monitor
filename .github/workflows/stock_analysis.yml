@@ -54,9 +54,9 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/all_stocks.json
+          git add data/all_stocks.json || true
           git diff --staged --quiet || git commit -m "Update stock pool [skip ci]"
-          git push
+          git push || echo "No changes to push"
 
   # 定时任务：早盘复盘（工作日 10:50）
   morning-review:
@@ -98,6 +98,7 @@ jobs:
   # 定时任务：尾盘预测（工作日 15:30）
   afternoon-predict:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     if: github.event.schedule == '30 7 * * 1-5' || (github.event_name == 'workflow_dispatch' && github.event.inputs.task == 'scan')
     
     steps:
@@ -136,9 +137,9 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/prediction_history.json data/strategy_weights.json
+          git add data/prediction_history.json data/strategy_weights.json || true
           git diff --staged --quiet || git commit -m "Update prediction history [skip ci]"
-          git push
+          git push || echo "No changes to push"
 
   # 定时任务：策略更新（工作日 16:00）
   update-strategy:
@@ -166,9 +167,9 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/strategy_weights.json
+          git add data/strategy_weights.json || true
           git diff --staged --quiet || git commit -m "Update strategy weights [skip ci]"
-          git push
+          git push || echo "No changes to push"
 
   # 定时任务：GitHub策略搜索（每周日 20:00）
   github-search:
@@ -195,6 +196,7 @@ jobs:
   # 手动任务：测试邮件
   test-email:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.task == 'test'
     
     steps:
