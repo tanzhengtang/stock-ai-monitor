@@ -1,20 +1,13 @@
 name: Stock Analysis System
 
 on:
-  # 定时任务（UTC时间）
   schedule:
-    # 北京时间 10:50 (UTC 02:50) - 早盘复盘
     - cron: '50 2 * * 1-5'
-    # 北京时间 15:30 (UTC 07:30) - 尾盘预测
     - cron: '30 7 * * 1-5'
-    # 北京时间 16:00 (UTC 08:00) - 策略更新
     - cron: '0 8 * * 1-5'
-    # 每周日北京时间 20:00 (UTC 12:00) - GitHub策略搜索
     - cron: '0 12 * * 0'
-    # 每日凌晨 2:00 (UTC 18:00) - 刷新股票池
     - cron: '0 18 * * *'
   
-  # 手动触发
   workflow_dispatch:
     inputs:
       task:
@@ -23,15 +16,14 @@ on:
         default: 'scan'
         type: choice
         options:
-          - scan        # 全A股扫描
-          - refresh     # 刷新股票池
-          - test        # 测试邮件
+          - scan
+          - refresh
+          - test
 
 env:
   PYTHON_VERSION: '3.11'
 
 jobs:
-  # 任务1: 全A股扫描
   scan-stocks:
     runs-on: ubuntu-latest
     if: github.event.schedule == '30 7 * * 1-5' || github.event.inputs.task == 'scan'
@@ -50,37 +42,27 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyyaml requests pandas numpy schedule
       
-      - name: Create config from secrets
+      - name: Create config
         run: |
-          mkdir -p config
-          cat > config/settings.yaml << 'EOF'
-          push_type: "email"
-          email:
-            smtp_server: "${{ secrets.EMAIL_SMTP_SERVER }}"
-            smtp_port: ${{ secrets.EMAIL_SMTP_PORT }}
-            sender_email: "${{ secrets.EMAIL_SENDER }}"
-            sender_password: "${{ secrets.EMAIL_PASSWORD }}"
-            receiver_emails:
-              - "${{ secrets.EMAIL_RECEIVERS }}"
-          schedule:
-            morning_review: "10:50"
-            afternoon_predict: "15:30"
-          EOF
+          python -c "
+          import yaml
+          config = {
+              'push_type': 'email',
+              'email': {
+                  'smtp_server': '${{ secrets.EMAIL_SMTP_SERVER }}',
+                  'smtp_port': int('${{ secrets.EMAIL_SMTP_PORT }}'),
+                  'sender_email': '${{ secrets.EMAIL_SENDER }}',
+                  'sender_password': '${{ secrets.EMAIL_PASSWORD }}',
+                  'receiver_emails': ['${{ secrets.EMAIL_RECEIVERS }}']
+              }
+          }
+          with open('config/settings.yaml', 'w') as f:
+              yaml.dump(config, f, default_flow_style=False)
+          "
       
-      - name: Run full scan
-        run: |
-          python github_actions_runner.py scan
-      
-      - name: Upload report
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: stock-report-${{ github.run_number }}
-          path: |
-            data/*.json
-          retention-days: 30
+      - name: Run scan
+        run: python github_actions_runner.py scan
 
-  # 任务2: 刷新股票池
   refresh-pool:
     runs-on: ubuntu-latest
     if: github.event.schedule == '0 18 * * *' || github.event.inputs.task == 'refresh'
@@ -100,8 +82,7 @@ jobs:
           pip install pyyaml requests pandas numpy schedule
       
       - name: Refresh stock pool
-        run: |
-          python github_actions_runner.py refresh
+        run: python github_actions_runner.py refresh
       
       - name: Commit changes
         run: |
@@ -111,7 +92,6 @@ jobs:
           git diff --staged --quiet || git commit -m "Update stock pool [skip ci]"
           git push
 
-  # 任务3: 测试邮件
   test-email:
     runs-on: ubuntu-latest
     if: github.event.inputs.task == 'test'
@@ -130,20 +110,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyyaml requests pandas numpy schedule
       
-      - name: Create config from secrets
+      - name: Create config
         run: |
-          mkdir -p config
-          cat > config/settings.yaml << 'EOF'
-          push_type: "email"
-          email:
-            smtp_server: "${{ secrets.EMAIL_SMTP_SERVER }}"
-            smtp_port: ${{ secrets.EMAIL_SMTP_PORT }}
-            sender_email: "${{ secrets.EMAIL_SENDER }}"
-            sender_password: "${{ secrets.EMAIL_PASSWORD }}"
-            receiver_emails:
-              - "${{ secrets.EMAIL_RECEIVERS }}"
-          EOF
+          python -c "
+          import yaml
+          config = {
+              'push_type': 'email',
+              'email': {
+                  'smtp_server': '${{ secrets.EMAIL_SMTP_SERVER }}',
+                  'smtp_port': int('${{ secrets.EMAIL_SMTP_PORT }}'),
+                  'sender_email': '${{ secrets.EMAIL_SENDER }}',
+                  'sender_password': '${{ secrets.EMAIL_PASSWORD }}',
+                  'receiver_emails': ['${{ secrets.EMAIL_RECEIVERS }}']
+              }
+          }
+          with open('config/settings.yaml', 'w') as f:
+              yaml.dump(config, f, default_flow_style=False)
+          "
       
       - name: Test email
-        run: |
-          python cli.py test
+        run: python cli.py test
