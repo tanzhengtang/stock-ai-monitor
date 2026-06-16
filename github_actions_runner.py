@@ -23,7 +23,18 @@ def setup_logging():
 
 
 def get_email_config():
-    """从环境变量获取邮件配置"""
+    """从环境变量或配置文件获取邮件配置"""
+    import yaml
+    
+    # 先尝试从配置文件读取
+    config_path = os.path.join(os.path.dirname(__file__), 'config', 'settings.yaml')
+    if os.path.exists(config_path):
+        with open(config_path, 'r', encoding='utf-8') as f:
+            config = yaml.safe_load(f)
+            if config.get('email', {}).get('sender_email'):
+                return config['email']
+    
+    # 从环境变量读取
     return {
         'smtp_server': os.environ.get('EMAIL_SMTP_SERVER', 'smtp.qq.com'),
         'smtp_port': int(os.environ.get('EMAIL_SMTP_PORT', '465')),

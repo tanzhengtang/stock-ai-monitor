@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       task:
-        description: '执行任务'
+        description: 'Task'
         required: true
         default: 'scan'
         type: choice
@@ -22,6 +22,11 @@ on:
 
 env:
   PYTHON_VERSION: '3.11'
+  EMAIL_SMTP_SERVER: ${{ secrets.EMAIL_SMTP_SERVER }}
+  EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
+  EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+  EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+  EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
 
 jobs:
   scan-stocks:
@@ -43,22 +48,7 @@ jobs:
           pip install pyyaml requests pandas numpy schedule
       
       - name: Create config
-        run: |
-          python -c "
-          import yaml
-          config = {
-              'push_type': 'email',
-              'email': {
-                  'smtp_server': '${{ secrets.EMAIL_SMTP_SERVER }}',
-                  'smtp_port': int('${{ secrets.EMAIL_SMTP_PORT }}'),
-                  'sender_email': '${{ secrets.EMAIL_SENDER }}',
-                  'sender_password': '${{ secrets.EMAIL_PASSWORD }}',
-                  'receiver_emails': ['${{ secrets.EMAIL_RECEIVERS }}']
-              }
-          }
-          with open('config/settings.yaml', 'w') as f:
-              yaml.dump(config, f, default_flow_style=False)
-          "
+        run: python github_actions_config.py
       
       - name: Run scan
         run: python github_actions_runner.py scan
@@ -111,22 +101,7 @@ jobs:
           pip install pyyaml requests pandas numpy schedule
       
       - name: Create config
-        run: |
-          python -c "
-          import yaml
-          config = {
-              'push_type': 'email',
-              'email': {
-                  'smtp_server': '${{ secrets.EMAIL_SMTP_SERVER }}',
-                  'smtp_port': int('${{ secrets.EMAIL_SMTP_PORT }}'),
-                  'sender_email': '${{ secrets.EMAIL_SENDER }}',
-                  'sender_password': '${{ secrets.EMAIL_PASSWORD }}',
-                  'receiver_emails': ['${{ secrets.EMAIL_RECEIVERS }}']
-              }
-          }
-          with open('config/settings.yaml', 'w') as f:
-              yaml.dump(config, f, default_flow_style=False)
-          "
+        run: python github_actions_config.py
       
       - name: Test email
         run: python cli.py test
