@@ -1,209 +1,132 @@
-# AI信号监控系统
+# AI量化交易系统
 
-用于聚合多个平台的AI股票信号，生成共识信号和风险评估。
+基于多平台信号聚合的A股量化分析系统
 
 ## 功能特性
 
-- **多平台信号聚合**: 支持东方财富、同花顺、AKShare、BaoStock等平台
-- **基本面分析**: 包含市盈率、市净率、ROE、毛利率等财务指标
-- **共识分析**: 通过投票、加权评分、置信度加权等多种方法分析共识
-- **风险评估**: 评估信号的风险等级，过滤高风险信号
-- **定时任务**: 支持定时扫描和报告生成
-- **通知推送**: 支持控制台、钉钉、邮件等通知方式
+- 📊 **全A股扫描** - 5000+只股票自动分析
+- 📈 **多策略分析** - 7种量化策略综合评分
+- 🔔 **实时监测** - 止损止盈自动提醒
+- 📧 **邮件推送** - 每日报告自动发送
+- 🤖 **GitHub Actions** - 全自动化运行
 
-## 安装依赖
+## 快速开始
+
+### 1. 克隆项目
+
+```bash
+git clone https://github.com/your-username/stock-ai-monitor.git
+cd stock-ai-monitor
+```
+
+### 2. 安装依赖
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 快速开始
-
-### 1. 执行一次扫描
+### 3. 配置
 
 ```bash
-# 扫描指定股票
-python main.py --stocks 600519 600900
+# 复制配置模板
+cp config/settings.template.yaml config/settings.yaml
 
-# 扫描配置文件中的股票
-python main.py --once
+# 编辑配置文件，填入你的邮箱信息
+vim config/settings.yaml
 ```
 
-### 2. 运行定时任务
+### 4. 运行
 
 ```bash
-python main.py --schedule
+# 扫描市场
+python cli.py scan --top 10
+
+# 启动定时任务
+python cli.py schedule
 ```
 
-### 3. 使用Python API
+## GitHub Actions 自动化
 
-```python
-from scrapers import AKShareScraper, BaoStockScraper
-from signal_aggregator import SignalAggregator
+### 配置 Secrets
 
-aggregator = SignalAggregator()
+1. 进入仓库 → Settings → Secrets → Actions
+2. 添加以下 Secrets：
 
-# 使用AKShare获取财务数据
-with AKShareScraper() as scraper:
-    signal = scraper.get_stock_signal('600519')
-    if signal:
-        aggregator.add_signal(signal)
+| Secret名称 | 说明 |
+|------------|------|
+| `EMAIL_SMTP_SERVER` | SMTP服务器 (如: smtp.qq.com) |
+| `EMAIL_SMTP_PORT` | SMTP端口 (如: 465) |
+| `EMAIL_SENDER` | 发件人邮箱 |
+| `EMAIL_PASSWORD` | 邮箱授权码 |
+| `EMAIL_RECEIVERS` | 收件人邮箱 |
 
-# 使用BaoStock获取行情数据
-with BaoStockScraper() as scraper:
-    signal = scraper.get_stock_signal('600519')
-    if signal:
-        aggregator.add_signal(signal)
+### 定时任务
 
-# 生成报告
-result = aggregator.aggregate_all()
-print(result.to_report())
-```
+| 北京时间 | 任务 |
+|----------|------|
+| 02:00 | 刷新股票池 |
+| 10:50 | 早盘复盘 |
+| **15:30** | **全A股扫描预测** |
+| 16:00 | 策略更新 |
+| 周日 20:00 | GitHub策略搜索 |
 
-## 核心模块
+### 手动触发
 
-### 爬虫模块 (scrapers/)
-
-| 爬虫 | 数据类型 | 状态 |
-|------|----------|------|
-| EastMoneyScraper | 行情数据 | ⚠️ 网络问题 |
-| TongHuaShunScraper | 行情数据 | ✅ 可用 |
-| AKShareScraper | 行情+财务 | ✅ 可用 |
-| BaoStockScraper | 行情+基本面 | ✅ 可用 |
-
-### 信号聚合模块 (signal_aggregator/)
-
-- `SignalAggregator`: 信号聚合器
-- `ConsensusAnalyzer`: 共识分析器
-- `RiskAnalyzer`: 风险分析器
-
-### 通知推送模块 (notifiers/)
-
-- `ConsoleNotifier`: 控制台输出
-- `DingTalkNotifier`: 钉钉机器人推送
-- `EmailNotifier`: 邮件推送
-
-## 配置文件
-
-编辑 `config/settings.yaml` 配置系统参数：
-
-```yaml
-# 监控股票列表
-watchlist:
-  - code: "600519"
-    name: "贵州茅台"
-  - code: "600900"
-    name: "长江电力"
-
-# 定时任务配置
-schedule:
-  enabled: true
-  morning_scan: "09:15"
-  midday_scan: "11:30"
-  afternoon_scan: "14:30"
-  evening_report: "15:30"
-
-# 通知配置
-notification:
-  dingtalk:
-    enabled: false
-    webhook_url: "your_webhook_url"
-  email:
-    enabled: false
-    smtp_server: "smtp.gmail.com"
-    sender_email: "your_email@gmail.com"
-    sender_password: "your_password"
-    receiver_emails:
-      - "receiver@example.com"
-```
-
-## 财务数据指标
-
-| 指标 | 说明 | 来源 |
-|------|------|------|
-| pe | 市盈率（动态） | BaoStock |
-| pb | 市净率 | BaoStock |
-| roe | 净资产收益率 | AKShare |
-| gross_margin | 毛利率 | AKShare |
-| net_margin | 净利率 | AKShare |
-| debt_ratio | 资产负债率 | AKShare |
-| revenue_growth | 营收增长率 | AKShare |
-| net_profit_growth | 净利润增长率 | AKShare |
-| operating_cashflow | 经营现金流 | AKShare |
-
-## 评分算法
-
-评分基于以下指标：
-
-- **技术面指标 (30%)**: 涨跌幅、换手率、成交量
-- **估值指标 (30%)**: 市盈率、市净率
-- **盈利能力指标 (25%)**: ROE、毛利率、净利率
-- **成长性指标 (15%)**: 营收增长率、净利润增长率
-
-## 运行测试
-
-```bash
-# 运行所有测试
-python -m unittest discover tests -v
-
-# 运行爬虫测试
-python -m unittest tests.test_scrapers -v
-
-# 运行聚合器测试
-python -m unittest tests.test_aggregator -v
-```
+进入 Actions → Run workflow → 选择任务
 
 ## 项目结构
 
 ```
 stock-ai-monitor/
-├── signal_aggregator/           # 信号聚合模块
-│   ├── models.py               # 数据模型
-│   ├── aggregator.py           # 聚合器核心
-│   └── analyzers/              # 分析器
-├── scrapers/                    # 爬虫模块
-│   ├── base_scraper.py         # 爬虫基类
-│   ├── eastmoney.py            # 东方财富爬虫
-│   ├── tonghuashun.py          # 同花顺爬虫
-│   ├── akshare_scraper.py      # AKShare爬虫
-│   └── baostock_scraper.py     # BaoStock爬虫
-├── notifiers/                   # 通知推送模块
-│   ├── base_notifier.py        # 通知基类
-│   ├── console_notifier.py     # 控制台通知
-│   ├── dingtalk_notifier.py    # 钉钉通知
-│   └── email_notifier.py       # 邮件通知
-├── config/                      # 配置文件
-│   ├── settings.yaml           # 主配置
-│   └── cookies.yaml            # Cookie配置
-├── tests/                       # 测试用例
-├── main.py                      # 主程序入口
-├── requirements.txt             # 依赖
-└── README.md                    # 说明文档
+├── .github/workflows/         # GitHub Actions
+├── config/                    # 配置文件
+│   ├── settings.template.yaml # 配置模板
+│   └── settings.yaml         # 真实配置（不提交）
+├── scheduler/                 # 定时任务
+├── scrapers/                  # 爬虫模块
+├── signal_aggregator/         # 信号聚合
+├── trading/                   # 量化交易
+├── tests/                     # 测试用例
+├── cli.py                    # CLI入口
+└── requirements.txt          # 依赖
 ```
 
-## 使用示例
-
-### 扫描指定股票
+## CLI 命令
 
 ```bash
-python main.py --stocks 600519 600900 000858
+# 扫描市场
+python cli.py scan --top 10
+
+# 全A股扫描
+python cli.py scan --all --min-score 55
+
+# 刷新股票池
+python cli.py refresh
+
+# 更新策略权重
+python cli.py update
+
+# 测试邮件
+python cli.py test
+
+# 启动定时任务
+python cli.py schedule
 ```
 
-### 运行定时监控
+## 安全说明
 
-```bash
-python main.py --schedule
-```
+- ✅ 配置文件已加入 `.gitignore`，不会被提交
+- ✅ 敏感信息通过 GitHub Secrets 存储
+- ✅ 配置模板可安全公开
 
-### 查看帮助
+## 免责声明
 
-```bash
-python main.py --help
-```
+⚠️ **本系统仅供学习和研究使用，不构成投资建议。**
 
-## 注意事项
+- 股市有风险，投资需谨慎
+- 历史数据不代表未来表现
+- 请勿将本系统作为唯一投资依据
 
-1. 本系统仅用于信号分析，不提供投资建议
-2. 投资有风险，决策需谨慎
-3. 请遵守各平台的使用条款
-4. 建议使用代理IP避免被封禁
+## License
+
+MIT License

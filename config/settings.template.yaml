@@ -1,0 +1,49 @@
+# 量化交易系统配置模板
+# 复制此文件为 settings.yaml 并填入真实配置
+# cp config/settings.template.yaml config/settings.yaml
+
+# 推送方式: 'email' 或 'qq'
+push_type: "email"
+
+# 邮件配置
+email:
+  smtp_server: "smtp.qq.com"
+  smtp_port: 465
+  sender_email: "your_email@qq.com"           # 修改为你的邮箱
+  sender_password: "your_authorization_code"   # 修改为你的授权码
+  receiver_emails:
+    - "receiver@example.com"                   # 修改为收件人邮箱
+
+# QQ机器人配置（可选）
+qq_bot:
+  type: "go-cqhttp"
+  webhook_url: ""
+  group_id: ""
+
+# 定时任务配置
+schedule:
+  morning_review: "10:50"
+  afternoon_predict: "15:30"
+
+# 回测配置
+backtest:
+  initial_capital: 1000000
+  commission_rate: 0.0003
+  min_commission: 5
+  tax_rate: 0.001
+  slippage: 0.001
+  max_position_pct: 0.2
+  stop_loss_pct: 0.05
+  take_profit_pct: 0.1
+  max_holding_days: 20
+
+# 风险配置
+risk:
+  max_position_pct: 0.2
+  max_total_position_pct: 0.8
+  min_cash_ratio: 0.2
+  max_daily_loss_pct: 0.03
+  max_drawdown_pct: 0.1
+  stop_loss_pct: 0.05
+  take_profit_pct: 0.15
+  max_orders_per_day: 10

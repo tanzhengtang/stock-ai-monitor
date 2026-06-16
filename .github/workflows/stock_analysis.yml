@@ -51,13 +51,43 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       
+      - name: Create config from secrets
+        run: |
+          mkdir -p config
+          cat > config/settings.yaml << EOF
+          push_type: "email"
+          email:
+            smtp_server: "${{ secrets.EMAIL_SMTP_SERVER }}"
+            smtp_port: ${{ secrets.EMAIL_SMTP_PORT }}
+            sender_email: "${{ secrets.EMAIL_SENDER }}"
+            sender_password: "${{ secrets.EMAIL_PASSWORD }}"
+            receiver_emails:
+              - "${{ secrets.EMAIL_RECEIVERS }}"
+          schedule:
+            morning_review: "10:50"
+            afternoon_predict: "15:30"
+          backtest:
+            initial_capital: 1000000
+            commission_rate: 0.0003
+            min_commission: 5
+            tax_rate: 0.001
+            slippage: 0.001
+            max_position_pct: 0.2
+            stop_loss_pct: 0.05
+            take_profit_pct: 0.1
+            max_holding_days: 20
+          risk:
+            max_position_pct: 0.2
+            max_total_position_pct: 0.8
+            min_cash_ratio: 0.2
+            max_daily_loss_pct: 0.03
+            max_drawdown_pct: 0.1
+            stop_loss_pct: 0.05
+            take_profit_pct: 0.15
+            max_orders_per_day: 10
+          EOF
+      
       - name: Run full scan
-        env:
-          EMAIL_SMTP_SERVER: ${{ secrets.EMAIL_SMTP_SERVER }}
-          EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
-          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
-          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-          EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
         run: |
           python github_actions_runner.py scan
       
@@ -122,12 +152,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       
+      - name: Create config from secrets
+        run: |
+          mkdir -p config
+          cat > config/settings.yaml << EOF
+          push_type: "email"
+          email:
+            smtp_server: "${{ secrets.EMAIL_SMTP_SERVER }}"
+            smtp_port: ${{ secrets.EMAIL_SMTP_PORT }}
+            sender_email: "${{ secrets.EMAIL_SENDER }}"
+            sender_password: "${{ secrets.EMAIL_PASSWORD }}"
+            receiver_emails:
+              - "${{ secrets.EMAIL_RECEIVERS }}"
+          EOF
+      
       - name: Test email
-        env:
-          EMAIL_SMTP_SERVER: ${{ secrets.EMAIL_SMTP_SERVER }}
-          EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
-          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
-          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-          EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
         run: |
           python cli.py test
