@@ -15,9 +15,13 @@ config/cookies.yaml
 # 数据和日志
 data/cache/
 data/memory/
-data/*.json
 logs/
 *.log
+
+# 保留数据文件
+!data/all_stocks.json
+!data/prediction_history.json
+!data/strategy_weights.json
 
 # IDE
 .vscode/

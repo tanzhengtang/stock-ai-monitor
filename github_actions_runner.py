@@ -4,14 +4,17 @@ GitHub Actions 定时任务脚本
 
 import os
 import sys
+import json
 import logging
 from datetime import datetime
+from pathlib import Path
 
 # 添加项目路径
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from scheduler.predictor import StockPredictor
 from scheduler.email_bot import EmailBot
+from scheduler.reviewer import StockReviewer
 
 
 def setup_logging():
@@ -44,6 +47,74 @@ def get_email_config():
     }
 
 
+def send_email(subject, content):
+    """发送邮件"""
+    config = get_email_config()
+    if config['sender_email'] and config['receiver_emails']:
+        email_bot = EmailBot(**config)
+        result = email_bot.send(subject, content)
+        print(f"邮件发送{'成功' if result else '失败'}")
+        return result
+    else:
+        print("邮件配置不完整，跳过发送")
+        return False
+
+
+def load_predictions():
+    """加载昨日预测结果"""
+    pred_file = Path(__file__).parent / 'data' / 'prediction_history.json'
+    
+    if not pred_file.exists():
+        print("没有找到预测历史文件")
+        return []
+    
+    try:
+        with open(pred_file, 'r', encoding='utf-8') as f:
+            history = json.load(f)
+        
+        if not history:
+            print("预测历史为空")
+            return []
+        
+        # 获取最近一次预测
+        latest = history[-1]
+        predictions = latest.get('predictions', [])
+        
+        print(f"加载预测记录: {latest.get('date', 'N/A')}")
+        print(f"预测股票数: {len(predictions)}")
+        
+        return predictions
+    except Exception as e:
+        print(f"加载预测历史失败: {e}")
+        return []
+
+
+def run_review():
+    """运行早盘复盘"""
+    print(f"开始早盘复盘 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    
+    # 加载昨日预测
+    predictions = load_predictions()
+    
+    if not predictions:
+        print("没有昨日预测记录，跳过复盘")
+        return
+    
+    # 复盘
+    reviewer = StockReviewer()
+    result = reviewer.review(predictions)
+    
+    # 生成报告
+    report = reviewer.generate_report(result)
+    
+    # 发送邮件
+    subject = f'📊 早盘复盘报告 - {datetime.now().strftime("%Y-%m-%d")}'
+    send_email(subject, report)
+    
+    print(report)
+    return report
+
+
 def run_scan():
     """运行全A股扫描"""
     print(f"开始全A股扫描 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -61,14 +132,8 @@ def run_scan():
     report = predictor.generate_full_report(all_results, top_per_sector=5)
     
     # 发送邮件
-    config = get_email_config()
-    if config['sender_email'] and config['receiver_emails']:
-        email_bot = EmailBot(**config)
-        subject = f'📊 全A股扫描报告 - {datetime.now().strftime("%Y-%m-%d")}'
-        email_bot.send(subject, report)
-        print("邮件发送成功")
-    else:
-        print("邮件配置不完整，跳过发送")
+    subject = f'📊 全A股扫描报告 - {datetime.now().strftime("%Y-%m-%d")}'
+    send_email(subject, report)
     
     print(report)
     return report
@@ -83,6 +148,13 @@ def run_refresh():
     print(f"股票池刷新完成: {len(stocks)} 只股票")
 
 
+def run_test():
+    """测试邮件配置"""
+    subject = f'📧 测试邮件 - {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
+    content = '这是一封测试邮件，用于验证邮件配置是否正确。'
+    send_email(subject, content)
+
+
 if __name__ == '__main__':
     setup_logging()
     
@@ -90,20 +162,13 @@ if __name__ == '__main__':
     
     if command == 'scan':
         run_scan()
+    elif command == 'review':
+        run_review()
     elif command == 'refresh':
         run_refresh()
     elif command == 'test':
-        # 测试邮件配置
-        config = get_email_config()
-        if config['sender_email'] and config['receiver_emails']:
-            email_bot = EmailBot(**config)
-            subject = f'📧 测试邮件 - {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
-            content = '这是一封测试邮件，用于验证邮件配置是否正确。'
-            result = email_bot.send(subject, content)
-            print(f"邮件发送{'成功' if result else '失败'}")
-        else:
-            print("邮件配置不完整")
+        run_test()
     else:
         print(f"未知命令: {command}")
-        print("可用命令: scan, refresh, test")
+        print("可用命令: scan, review, refresh, test")
         sys.exit(1)

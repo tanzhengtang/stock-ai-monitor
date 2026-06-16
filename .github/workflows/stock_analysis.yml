@@ -1,21 +1,37 @@
 name: Stock Analysis System
 
 on:
+  # 定时任务（UTC时间）
+  schedule:
+    # 北京时间 02:00 (UTC 18:00) - 刷新股票池
+    - cron: '0 18 * * *'
+    # 北京时间 10:50 (UTC 02:50) - 早盘复盘
+    - cron: '50 2 * * 1-5'
+    # 北京时间 15:30 (UTC 07:30) - 尾盘预测
+    - cron: '30 7 * * 1-5'
+    # 北京时间 16:00 (UTC 08:00) - 策略更新
+    - cron: '0 8 * * 1-5'
+    # 每周日北京时间 20:00 (UTC 12:00) - GitHub策略搜索
+    - cron: '0 12 * * 0'
+  
+  # 手动触发
   workflow_dispatch:
     inputs:
       task:
         description: '选择任务'
         required: true
-        default: 'test'
+        default: 'scan'
         type: choice
         options:
-          - test        # 测试邮件
           - scan        # 全A股扫描
           - refresh     # 刷新股票池
+          - test        # 测试邮件
 
 jobs:
-  run-task:
+  # 定时任务：刷新股票池（每日凌晨）
+  refresh-pool:
     runs-on: ubuntu-latest
+    if: github.event.schedule == '0 18 * * *' || (github.event_name == 'workflow_dispatch' && github.event.inputs.task == 'refresh')
     
     steps:
       - name: Checkout code
@@ -31,12 +47,35 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyyaml requests pandas numpy schedule
       
-      - name: Debug - Check secrets
+      - name: Refresh stock pool
+        run: python github_actions_runner.py refresh
+      
+      - name: Commit changes
         run: |
-          echo "EMAIL_SMTP_SERVER=${{ secrets.EMAIL_SMTP_SERVER }}"
-          echo "EMAIL_SENDER=${{ secrets.EMAIL_SENDER }}"
-          echo "EMAIL_RECEIVERS=${{ secrets.EMAIL_RECEIVERS }}"
-          # 不打印密码
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/all_stocks.json
+          git diff --staged --quiet || git commit -m "Update stock pool [skip ci]"
+          git push
+
+  # 定时任务：早盘复盘（工作日 10:50）
+  morning-review:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '50 2 * * 1-5'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml requests pandas numpy schedule
       
       - name: Create config
         env:
@@ -47,24 +86,145 @@ jobs:
           EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
         run: python github_actions_config.py
       
-      - name: Run task
+      - name: Run morning review
         env:
           EMAIL_SMTP_SERVER: ${{ secrets.EMAIL_SMTP_SERVER }}
           EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
           EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
+        run: python github_actions_runner.py review
+
+  # 定时任务：尾盘预测（工作日 15:30）
+  afternoon-predict:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '30 7 * * 1-5' || (github.event_name == 'workflow_dispatch' && github.event.inputs.task == 'scan')
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
         run: |
-          TASK="${{ github.event.inputs.task }}"
-          echo "Running task: $TASK"
-          
-          if [ "$TASK" = "test" ]; then
-            python cli.py test
-          elif [ "$TASK" = "scan" ]; then
-            python github_actions_runner.py scan
-          elif [ "$TASK" = "refresh" ]; then
-            python github_actions_runner.py refresh
-          else
-            echo "Unknown task: $TASK"
-            exit 1
-          fi
+          python -m pip install --upgrade pip
+          pip install pyyaml requests pandas numpy schedule
+      
+      - name: Create config
+        env:
+          EMAIL_SMTP_SERVER: ${{ secrets.EMAIL_SMTP_SERVER }}
+          EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
+          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
+        run: python github_actions_config.py
+      
+      - name: Run full scan
+        env:
+          EMAIL_SMTP_SERVER: ${{ secrets.EMAIL_SMTP_SERVER }}
+          EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
+          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
+        run: python github_actions_runner.py scan
+      
+      - name: Save prediction history
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/prediction_history.json data/strategy_weights.json
+          git diff --staged --quiet || git commit -m "Update prediction history [skip ci]"
+          git push
+
+  # 定时任务：策略更新（工作日 16:00）
+  update-strategy:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 8 * * 1-5'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml requests pandas numpy schedule
+      
+      - name: Update strategy weights
+        run: python cli.py update
+      
+      - name: Save updated weights
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/strategy_weights.json
+          git diff --staged --quiet || git commit -m "Update strategy weights [skip ci]"
+          git push
+
+  # 定时任务：GitHub策略搜索（每周日 20:00）
+  github-search:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 12 * * 0'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml requests pandas numpy schedule
+      
+      - name: Search GitHub strategies
+        run: python cli.py search --force
+
+  # 手动任务：测试邮件
+  test-email:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.task == 'test'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml requests pandas numpy schedule
+      
+      - name: Create config
+        env:
+          EMAIL_SMTP_SERVER: ${{ secrets.EMAIL_SMTP_SERVER }}
+          EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
+          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
+        run: python github_actions_config.py
+      
+      - name: Test email
+        env:
+          EMAIL_SMTP_SERVER: ${{ secrets.EMAIL_SMTP_SERVER }}
+          EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
+          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
+        run: python cli.py test
