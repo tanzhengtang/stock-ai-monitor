@@ -16,19 +16,25 @@ def cmd_scan(args):
     from scheduler.predictor import StockPredictor
     
     logger = get_logger('CLI')
-    predictor = StockPredictor()
+    predictor = StockPredictor(
+        fundamental_weight=args.fund_weight,
+    )
     
     if args.all:
         # 全A股扫描
         logger.info("开始全A股扫描...")
         results = predictor.scan_all_stocks(min_score=args.min_score, max_stocks=args.top)
         
-        print(f"\n全A股扫描完成: {len(results)} 只股票")
-        print(f"\n{'#':<3} {'代码':<8} {'名称':<10} {'现价':<8} {'涨跌幅':<8} {'评分':<6} {'信号'}")
-        print("-" * 60)
+        print(f"\n全A股扫描完成: {len(results)} 只股票 (含基本面评分)")
+        header = f"{'#':<3} {'代码':<8} {'名称':<10} {'现价':<8} {'涨跌幅':<8} {'评分':<6} {'信号'}"
+        print(f"\n{header}")
+        print("-" * 70)
         
         for i, stock in enumerate(results[:args.top], 1):
-            print(f"{i:<3} {stock['code']:<8} {stock['name']:<10} {stock['price']:.2f}{'':<4} {stock['change']:+.2f}%{'':<3} {stock['score']:<6.0f} {stock['reasons']}")
+            fund_str = ""
+            if stock.get('fund_score') is not None:
+                fund_str = f" [技:{stock.get('tech_score',0):.0f} 基:{stock['fund_score']:.0f}]"
+            print(f"{i:<3} {stock['code']:<8} {stock['name']:<10} {stock['price']:.2f}{'':<4} {stock['change']:+.2f}%{'':<3} {stock['score']:<6.0f} {stock['reasons'][:60]}")
     else:
         # 按板块扫描
         logger.info("开始按板块扫描...")
@@ -75,16 +81,25 @@ def cmd_update(args):
     from scheduler.predictor import StockPredictor
     
     logger = get_logger('CLI')
-    logger.info("更新策略权重...")
+    logger.info("更新策略权重 (含基本面策略)...")
     
     predictor = StockPredictor()
     predictor.update_strategy_weights()
     
-    print("✅ 策略权重更新完成")
+    print("✅ 策略权重更新完成 (8策略: 7技术面 + 1基本面)")
     print("\n当前权重:")
-    for strategy, weight in predictor.evaluator.strategy_weights.items():
+    strategy_labels = {
+        'ma_cross': 'MA均线交叉', 'rsi_reversal': 'RSI反转',
+        'macd_signal': 'MACD信号', 'kdj_signal': 'KDJ信号',
+        'bollinger_band': '布林带', 'momentum': '动量策略',
+        'volume_price': '量价关系', 'fundamental': '基本面评分'
+    }
+    for strategy, weight in sorted(predictor.evaluator.strategy_weights.items(),
+                                    key=lambda x: x[1], reverse=True):
+        label = strategy_labels.get(strategy, strategy)
         bar = '█' * int(weight * 20)
-        print(f"  {strategy:<15} {weight:.2f} {bar}")
+        print(f"  {label:<12} {weight:.3f} {bar}")
+    logger.info("权重更新完成")
 
 
 def cmd_search(args):
@@ -223,10 +238,12 @@ def main():
     subparsers = parser.add_subparsers(dest='command', help='可用命令')
     
     # scan 命令
-    scan_parser = subparsers.add_parser('scan', help='扫描市场')
+    scan_parser = subparsers.add_parser('scan', help='扫描市场 (含基本面评分)')
     scan_parser.add_argument('--top', type=int, default=10, help='显示前N个')
     scan_parser.add_argument('--all', action='store_true', help='全A股扫描')
     scan_parser.add_argument('--min-score', type=int, default=55, help='最低评分')
+    scan_parser.add_argument('--fund-weight', type=float, default=0.3,
+                             help='基本面权重 (0-1, 默认0.3)')
     
     # review 命令
     subparsers.add_parser('review', help='复盘昨日预测')

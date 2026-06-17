@@ -59,13 +59,13 @@ class BaoStockScraper(BaseScraper):
 
     def get_stock_signal(self, stock_code: str) -> Optional[PlatformSignal]:
         """
-        获取单个股票的信号
+        获取单个股票的信号（数据采集，不做评分）
         
         Args:
             stock_code: 股票代码，如 '000001' 或 '600519'
             
         Returns:
-            平台信号
+            平台信号 (score=50, neutral, raw_data包含完整数据)
         """
         self._init_baostock()
         
@@ -73,45 +73,24 @@ class BaoStockScraper(BaseScraper):
             return None
         
         try:
-            # 转换股票代码格式
             bs_code = self._convert_stock_code(stock_code)
             if not bs_code:
                 return None
             
-            # 获取行情数据
             quote_data = self._get_quote_data(bs_code)
-            
-            # 获取基本面数据
             fundamental_data = self._get_fundamental_data(bs_code)
-            
-            # 合并数据
             all_data = {**quote_data, **fundamental_data}
             all_data['stock_code'] = stock_code
-            
-            # 计算评分
-            score = self._calculate_score(all_data)
-            
-            # 生成理由
-            reasons = self._generate_reasons(all_data)
-            
-            # 计算置信度
-            confidence = self._calculate_confidence(all_data)
-            
-            # 获取股票名称
-            stock_name = all_data.get('name', stock_code)
-            
-            # 生成信号
-            signal_type = self.score_to_signal_type(score)
             
             return PlatformSignal(
                 platform=Platform.BAOSTOCK,
                 stock_code=stock_code,
-                stock_name=stock_name,
-                score=score,
-                signal_type=signal_type,
+                stock_name=all_data.get('name', stock_code),
+                score=50,
+                signal_type=SignalType.NEUTRAL,
                 analysis_type=AnalysisType.COMBINED,
-                confidence=confidence,
-                reasons=reasons,
+                confidence=0.5,
+                reasons=['数据已获取'],
                 timestamp=datetime.now(),
                 raw_data=all_data,
                 fundamental_data=fundamental_data
@@ -303,176 +282,8 @@ class BaoStockScraper(BaseScraper):
         
         return result
 
-    def _calculate_score(self, data: Dict) -> float:
-        """
-        计算评分
-        
-        Args:
-            data: 股票数据
-            
-        Returns:
-            评分 (0-100)
-        """
-        score = 50  # 基础分
-        
-        # ===== 技术面指标 (40%) =====
-        
-        # 涨跌幅 (15%)
-        change_pct = data.get('change_pct', 0)
-        if change_pct > 5:
-            score += 15
-        elif change_pct > 2:
-            score += 10
-        elif change_pct > 0:
-            score += 5
-        elif change_pct < -5:
-            score -= 15
-        elif change_pct < -2:
-            score -= 10
-        elif change_pct < 0:
-            score -= 5
-        
-        # 换手率 (10%)
-        turnover = data.get('turnover', 0)
-        if turnover > 10:
-            score += 10
-        elif turnover > 5:
-            score += 5
-        elif turnover < 1:
-            score -= 5
-        
-        # 量比 (15%)
-        volume = data.get('volume', 0)
-        if volume > 1000000:
-            score += 10
-        
-        # ===== 基本面指标 (60%) =====
-        
-        # 市盈率 (20%)
-        pe = data.get('pe', 0)
-        if pe > 0:
-            if pe < 15:
-                score += 20
-            elif pe < 25:
-                score += 10
-            elif pe > 100:
-                score -= 15
-            elif pe > 60:
-                score -= 10
-        
-        # 市净率 (15%)
-        pb = data.get('pb', 0)
-        if pb > 0:
-            if pb < 1:
-                score += 15
-            elif pb < 2:
-                score += 10
-            elif pb > 10:
-                score -= 10
-        
-        # 净资产收益率 (15%)
-        roe = data.get('roe', 0)
-        if roe > 20:
-            score += 15
-        elif roe > 10:
-            score += 10
-        elif roe > 0:
-            score += 5
-        
-        # 利润增长 (10%)
-        profit_growth = data.get('profit_growth', 0)
-        if profit_growth > 30:
-            score += 10
-        elif profit_growth > 10:
-            score += 5
-        
-        return min(max(score, 0), 100)
-
-    def _generate_reasons(self, data: Dict) -> List[str]:
-        """
-        生成理由
-        
-        Args:
-            data: 股票数据
-            
-        Returns:
-            理由列表
-        """
-        reasons = []
-        
-        # 技术面理由
-        change_pct = data.get('change_pct', 0)
-        if change_pct > 5:
-            reasons.append('涨幅较大')
-        elif change_pct > 0:
-            reasons.append('上涨趋势')
-        elif change_pct < -5:
-            reasons.append('跌幅较大')
-        elif change_pct < 0:
-            reasons.append('下跌趋势')
-        
-        # 基本面理由
-        pe = data.get('pe', 0)
-        if pe > 0:
-            if pe < 15:
-                reasons.append('低市盈率')
-            elif pe < 25:
-                reasons.append('估值合理')
-            elif pe > 100:
-                reasons.append('高市盈率')
-        
-        pb = data.get('pb', 0)
-        if pb > 0:
-            if pb < 1:
-                reasons.append('破净股')
-            elif pb < 2:
-                reasons.append('市净率合理')
-        
-        roe = data.get('roe', 0)
-        if roe > 20:
-            reasons.append('ROE优秀')
-        elif roe > 10:
-            reasons.append('ROE良好')
-        
-        profit_growth = data.get('profit_growth', 0)
-        if profit_growth > 30:
-            reasons.append('高成长')
-        elif profit_growth > 10:
-            reasons.append('稳定增长')
-        
-        if not reasons:
-            reasons.append('综合分析')
-        
-        return reasons
-
-    def _calculate_confidence(self, data: Dict) -> float:
-        """
-        计算置信度
-        
-        Args:
-            data: 股票数据
-            
-        Returns:
-            置信度 (0-1)
-        """
-        confidence = 0.5
-        
-        # 有行情数据增加置信度
-        if data.get('price', 0) > 0:
-            confidence += 0.1
-        
-        # 有基本面数据增加置信度
-        if data.get('pe', 0) > 0:
-            confidence += 0.1
-        
-        if data.get('pb', 0) > 0:
-            confidence += 0.1
-        
-        # 有财务数据增加置信度
-        if data.get('roe', 0) > 0:
-            confidence += 0.1
-        
-        if data.get('profit_growth', 0) > 0:
-            confidence += 0.1
-        
-        return min(confidence, 1.0)
+    # ================================================================
+    # 评分系统已迁移至 scheduler/predictor.py
+    #   StockPredictor._calculate_fundamental_score()
+    # 爬虫仅负责数据采集，不再执行评分
+    # ================================================================

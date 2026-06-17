@@ -1,13 +1,14 @@
 """
 股票预测模块
-支持全A股扫描，集成策略模块和策略评估器
+支持全A股扫描，集成策略模块和策略评估器，包含基本面评分
 """
 
 import requests
 import numpy as np
 import json
 import logging
-from datetime import datetime
+import pandas as pd
+from datetime import datetime, timedelta
 from typing import List, Dict, Optional
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -21,15 +22,35 @@ class StockPredictor:
     
     功能：
     1. 支持全A股扫描（5000+只）
-    2. 使用多种量化策略分析
-    3. 根据策略权重计算综合评分
-    4. 预测可能上涨的股票
+    2. 使用多种量化策略分析（技术面）
+    3. 集成基本面评分（PE/PB/ROE/利润增长）
+    4. 根据策略权重计算综合评分
+    5. 预测可能上涨的股票
+    
+    调参接口：
+        fundamental_weight: 基本面上综合评分中的权重 (默认0.3)
+        stop_loss_pct: 止损比例 (默认0.05)
+        take_profit_pct: 止盈比例 (默认0.10)
+        position_size_pct: 建议仓位比例 (默认0.20)
     """
 
-    def __init__(self, data_dir: str = None):
+    def __init__(self, data_dir: str = None, 
+                 fundamental_weight: float = 0.3,
+                 stop_loss_pct: float = 0.05,
+                 take_profit_pct: float = 0.10,
+                 position_size_pct: float = 0.20):
         self.logger = logging.getLogger('StockPredictor')
         self.data_dir = Path(data_dir or 'data')
         self.data_dir.mkdir(exist_ok=True)
+        
+        # 调参接口
+        self.fundamental_weight = fundamental_weight
+        self.stop_loss_pct = stop_loss_pct
+        self.take_profit_pct = take_profit_pct
+        self.position_size_pct = position_size_pct
+        
+        # 基本面缓存 (AKShare 批量获取, 一次调用全量)
+        self._fund_cache: Dict[str, Dict] = {}
         
         # 策略评估器
         self.evaluator = StrategyEvaluator(data_dir)
@@ -283,6 +304,7 @@ class StockPredictor:
                             high = float(data[4]) if data[4] else 0
                             low = float(data[5]) if data[5] else 0
                             volume = float(data[8]) if data[8] else 0
+                            amount = float(data[9]) if data[9] else 0  # 成交额
                             
                             change_pct = (current - prev_close) / prev_close * 100 if prev_close > 0 else 0
                             
@@ -294,6 +316,7 @@ class StockPredictor:
                                 'high': high,
                                 'low': low,
                                 'volume': volume,
+                                'amount': amount,
                                 'change_pct': change_pct
                             }
                     except Exception as e:
@@ -337,7 +360,254 @@ class StockPredictor:
         except Exception as e:
             return None
 
-    def analyze_stock(self, code: str, name: str, realtime_data: Dict, history: List[Dict] = None) -> Optional[Dict]:
+    def _load_fundamental_batch(self):
+        """批量加载全A股基本面数据 (AKShare yjbb_em, 一次调用全量)"""
+        if self._fund_cache:
+            return
+        
+        try:
+            import akshare as ak
+            self.logger.info("批量加载基本面数据 (AKShare yjbb_em)...")
+            df = ak.stock_yjbb_em(date=f'{datetime.now().year - 1}1231')
+            for _, row in df.iterrows():
+                code = str(row['股票代码']).zfill(6)
+                self._fund_cache[code] = {
+                    'eps': float(row.get('每股收益', 0) or 0),
+                    'roe': float(row.get('净资产收益率', 0) or 0),
+                    'profit_growth': float(row.get('净利润-同比增长', 0) or 0),
+                    'revenue_growth': float(row.get('营业总收入-同比增长', 0) or 0),
+                    'bvps': float(row.get('每股净资产', 0) or 0),
+                }
+            self.logger.info(f"基本面数据加载完成: {len(self._fund_cache)} 只")
+        except Exception as e:
+            self.logger.warning(f"批量加载基本面数据失败: {e}")
+
+    def _get_fundamental_data(self, stock_code: str) -> Dict:
+        """获取单只股票基本面数据 (从阿克Share批量缓存中查询)"""
+        if not self._fund_cache:
+            self._load_fundamental_batch()
+        
+        fd = self._fund_cache.get(stock_code, {})
+        if not fd:
+            return {'pe': 0, 'pb': 0, 'roe': 0, 'profit_growth': 0,
+                    'total_mv': 0, 'circ_mv': 0, 'eps': 0, 'bvps': 0}
+        
+        eps = fd.get('eps', 0)
+        bvps = fd.get('bvps', 0)
+        roe = fd.get('roe', 0)
+        profit_growth = fd.get('profit_growth', 0)
+        
+        return {
+            'pe': 0,  # 从实时行情 _get_realtime_batch 匹配后填充
+            'pb': 0,
+            'eps': eps,
+            'bvps': bvps,
+            'roe': roe,
+            'profit_growth': profit_growth,
+            'revenue_growth': fd.get('revenue_growth', 0),
+            'total_mv': 0,
+            'circ_mv': 0,
+        }
+
+    def _enrich_fund_with_price(self, fund_data: Dict, price: float) -> Dict:
+        """用当前价格补全 PE/PB"""
+        eps = fund_data.get('eps', 0)
+        bvps = fund_data.get('bvps', 0)
+        if eps > 0:
+            fund_data['pe'] = price / eps
+        if bvps > 0:
+            fund_data['pb'] = price / bvps
+        return fund_data
+
+    def _compute_quick_score(self, code: str, realtime: Dict) -> tuple:
+        """
+        多因子快筛评分 (技术面40%+基本面60%)
+        第一层: 准入关卡(OR逻辑) → 第二层: 评分排序
+        
+        Returns:
+            (pass_condition_met, quick_score)
+        """
+        change_pct = realtime.get('change_pct', 0)
+        price = realtime.get('price', 0)
+        open_price = realtime.get('open', 0)
+        amount = realtime.get('amount', 0)
+        high = realtime.get('high', 0)
+        low = realtime.get('low', 0)
+        prev_close = realtime.get('prev_close', 0)
+        
+        # === 准入关卡 (满足任一即放行) ===
+        passed = False
+        
+        # 条件①: 今日涨跌幅 > -3%
+        if change_pct >= -3:
+            passed = True
+        
+        fd = self._fund_cache.get(code, {})
+        pe = price / fd.get('eps', 1) if fd.get('eps', 0) > 0 else 0
+        pb = price / fd.get('bvps', 1) if fd.get('bvps', 0) > 0 else 0
+        roe = fd.get('roe', 0)
+        pg = fd.get('profit_growth', 0)
+        
+        # 条件②: 小跌但基本面好
+        if not passed and change_pct >= -5 and (0 < pe < 15 or roe > 15):
+            passed = True
+        
+        # 条件③: 深蹲但极度低估
+        if not passed and change_pct >= -8 and (0 < pe < 10 and roe > 15):
+            passed = True
+        
+        # 条件④: 高活跃+高质量
+        if not passed and amount > 50000000 and (roe > 20 or pg > 30):
+            passed = True
+        
+        if not passed:
+            return False, 0
+        
+        # === 多因子评分 ===
+        # 技术面 (40%)
+        tech_score = 0
+        
+        # 涨跌幅 (max 40)
+        if -8 <= change_pct < -5:
+            tech_score += 5
+        elif -5 <= change_pct < -3:
+            tech_score += 15
+        elif -3 <= change_pct < 0:
+            tech_score += 25
+        elif 0 <= change_pct < 2:
+            tech_score += 35
+        elif 2 <= change_pct <= 5:
+            tech_score += 40
+        elif 5 < change_pct <= 8:
+            tech_score += 30
+        
+        # 振幅 (max 10)
+        if prev_close > 0:
+            amplitude = (high - low) / prev_close * 100
+            if amplitude > 5:
+                tech_score += 10
+            elif amplitude > 2:
+                tech_score += 5
+        
+        # 开盘位置 (max 10)
+        if price > open_price and change_pct > 0:
+            tech_score += 10
+        
+        # 成交额流动性 (max 10)
+        if amount > 100000000:
+            tech_score += 10
+        elif amount > 30000000:
+            tech_score += 5
+        
+        # 基本面 (60%)
+        fund_score = 0
+        
+        if 0 < pe < 10:
+            fund_score += 25
+        elif 10 <= pe < 20:
+            fund_score += 15
+        elif 20 <= pe < 40:
+            fund_score += 5
+        
+        if 0 < pb < 1:
+            fund_score += 15
+        elif 1 <= pb < 3:
+            fund_score += 10
+        elif 3 <= pb < 5:
+            fund_score += 5
+        
+        if roe > 20:
+            fund_score += 25
+        elif roe > 10:
+            fund_score += 15
+        elif roe > 5:
+            fund_score += 5
+        
+        if pg > 50:
+            fund_score += 25
+        elif pg > 20:
+            fund_score += 15
+        elif pg > 0:
+            fund_score += 5
+        
+        total_score = int(tech_score * 0.4 + fund_score * 0.6)
+        return True, min(total_score, 100)
+
+    def _calculate_fundamental_score(self, fund: Dict) -> tuple:
+        """计算基本面评分和理由"""
+        score = 50
+        reasons = []
+        
+        # 市盈率 (15分)
+        pe = fund.get('pe', 0)
+        if 0 < pe < 15:
+            score += 15; reasons.append(f"PE={pe:.1f}低估值")
+        elif 0 < pe < 25:
+            score += 10; reasons.append(f"PE={pe:.1f}合理")
+        elif 0 < pe < 40:
+            score += 3
+        elif pe > 100:
+            score -= 15
+        elif pe > 60:
+            score -= 8
+        
+        # 市净率 (15分)
+        pb = fund.get('pb', 0)
+        if 0 < pb < 1:
+            score += 15; reasons.append(f"PB={pb:.2f}破净")
+        elif 0 < pb < 2:
+            score += 10; reasons.append(f"PB={pb:.2f}合理")
+        elif 0 < pb < 3:
+            score += 3
+        elif pb > 10:
+            score -= 10
+        
+        # ROE (15分)
+        roe = fund.get('roe', 0)
+        if roe > 20:
+            score += 15; reasons.append(f"ROE={roe:.0f}%优秀")
+        elif roe > 10:
+            score += 10; reasons.append(f"ROE={roe:.0f}%良好")
+        elif roe > 5:
+            score += 5
+        elif roe <= 0 and fund.get('pe', 0) > 0:
+            score -= 5
+        
+        # 利润增长 (15分)
+        pg = fund.get('profit_growth', 0)
+        if pg > 30:
+            score += 15; reasons.append(f"利润增长{pg:.0f}%")
+        elif pg > 10:
+            score += 10
+        elif pg > 0:
+            score += 5
+        elif pg < -10:
+            score -= 10
+        
+        return min(max(score, 0), 100), reasons
+
+    def _build_eval_signals(self, stock_result: Dict) -> Dict:
+        """构建策略评估信号字典（技术面7个 + 基本面1个）"""
+        signals = dict(stock_result.get('strategy_signals', {}))
+        
+        # 添加基本面信号
+        fund_score = stock_result.get('fund_score')
+        if fund_score is not None and fund_score > 0:
+            if fund_score > 65:
+                signals['fundamental'] = 'strong_buy'
+            elif fund_score > 55:
+                signals['fundamental'] = 'buy'
+            elif fund_score < 35:
+                signals['fundamental'] = 'sell'
+            else:
+                signals['fundamental'] = 'neutral'
+        else:
+            signals['fundamental'] = 'neutral'
+        
+        return signals
+
+    def analyze_stock(self, code: str, name: str, realtime_data: Dict, 
+                      history: List[Dict] = None, fundamental_data: Dict = None) -> Optional[Dict]:
         """
         分析单只股票
         
@@ -346,41 +616,46 @@ class StockPredictor:
             name: 股票名称
             realtime_data: 实时数据
             history: 历史数据（可选）
+            fundamental_data: 基本面数据（可选）{'pe','pb','roe','profit_growth',...}
             
         Returns:
             分析结果
         """
         try:
-            # 计算基础评分（基于实时数据）
             base_score = 50
             reasons = []
+            fund_score = 50
+            fund_reasons = []
             
             change_pct = realtime_data.get('change_pct', 0)
             price = realtime_data.get('price', 0)
             open_price = realtime_data.get('open', 0)
             
-            # 创业板优先加分
+            # 创业板/科创板加分
             if code.startswith('300') or code.startswith('301'):
-                base_score += 10
-                reasons.append('创业板')
-            
-            # 科创板加分
-            if code.startswith('688'):
+                base_score += 10; reasons.append('创业板')
+            elif code.startswith('688'):
                 base_score += 5
             
             # 涨跌幅评分
             if 0 < change_pct < 2:
-                base_score += 8
-                reasons.append('温和上涨')
+                base_score += 8; reasons.append('温和上涨')
             elif 2 <= change_pct < 5:
                 base_score += 5
             elif change_pct > 5:
                 base_score -= 5
             
-            # 开盘位置
+            # 高开高走
             if price > open_price and change_pct > 0:
-                base_score += 5
-                reasons.append('高开高走')
+                base_score += 5; reasons.append('高开高走')
+            
+            # 基本面评分
+            has_fundamental = False
+            if fundamental_data and any(fundamental_data.get(k, 0) != 0 
+                                         for k in ['pe', 'pb', 'roe', 'profit_growth', 'eps']):
+                fund_score, fund_reasons = self._calculate_fundamental_score(fundamental_data)
+                has_fundamental = True
+                reasons.extend(fund_reasons)
             
             # 如果有历史数据，进行策略分析
             strategy_result = {'strategy_signals': {}, 'weighted_score': base_score, 'details': {}}
@@ -390,7 +665,7 @@ class StockPredictor:
                 strategy_result = self._analyze_with_strategies(history)
                 tech_details = self._calculate_indicators(history)
                 
-                # 更新理由
+                # 更新技术面理由
                 signals = strategy_result['strategy_signals']
                 if signals.get('ma_cross') == 'buy':
                     reasons.append('均线多头')
@@ -403,8 +678,13 @@ class StockPredictor:
                 if signals.get('volume_price') == 'buy':
                     reasons.append('放量上涨')
             
-            # 最终评分
-            final_score = strategy_result.get('weighted_score', base_score)
+            # 综合评分: 技术面 + 基本面
+            tech_score = strategy_result.get('weighted_score', base_score)
+            if has_fundamental:
+                final_score = int(tech_score * (1 - self.fundamental_weight) + 
+                                fund_score * self.fundamental_weight)
+            else:
+                final_score = int(tech_score)
             
             # 预期收益
             expected_move = self._calculate_expected_move(
@@ -422,12 +702,15 @@ class StockPredictor:
                 'change': change_pct,
                 'volume': realtime_data.get('volume', 0),
                 'score': final_score,
-                'reasons': ', '.join(reasons[:3]) if reasons else '中性',
+                'tech_score': tech_score,
+                'fund_score': fund_score if has_fundamental else None,
+                'reasons': ', '.join(reasons[:5]) if reasons else '中性',
                 'strategy_signals': strategy_result.get('strategy_signals', {}),
                 'strategy_details': strategy_result.get('details', {}),
                 'tech_details': tech_details,
                 'expected_move': expected_move,
-                'has_history': history is not None and len(history) >= 20
+                'has_history': history is not None and len(history) >= 20,
+                'has_fundamental': has_fundamental,
             }
             
         except Exception as e:
@@ -710,8 +993,8 @@ class StockPredictor:
         expected_pct = max(min(expected_pct, 10), -5)
         
         expected_points = current_price * expected_pct / 100
-        target_price = current_price * (1 + expected_pct / 100)
-        stop_loss = current_price * 0.95
+        target_price = current_price * (1 + max(expected_pct, self.take_profit_pct * 100) / 100)
+        stop_loss = current_price * (1 - self.stop_loss_pct)
         
         # 置信度
         confidence = 50 + (buy_count - sell_count) * 10
@@ -802,18 +1085,11 @@ class StockPredictor:
                     continue
                 
                 realtime = all_realtime[code]
-                change_pct = realtime.get('change_pct', 0)
                 
-                # 快速过滤
-                if change_pct < -5:
+                # 多因子快筛: 准入关卡 + 评分
+                passed, quick_score = self._compute_quick_score(code, realtime)
+                if not passed:
                     continue
-                
-                # 快速评分
-                quick_score = 50
-                if 0 < change_pct < 3:
-                    quick_score += 8
-                if realtime['price'] > realtime['open'] and change_pct > 0:
-                    quick_score += 5
                 
                 candidates.append({
                     'code': code,
@@ -823,13 +1099,13 @@ class StockPredictor:
                     'quick_score': quick_score
                 })
         
-        # 按快速评分排序，只对前500名获取历史数据
+        # 按多因子评分排序，取前500进入深度分析
         candidates.sort(key=lambda x: x['quick_score'], reverse=True)
         top_candidates = candidates[:500]
         
-        self.logger.info(f"快速筛选: {len(top_candidates)} 只股票进入深度分析")
+        self.logger.info(f"多因子快筛: {len(top_candidates)} 只股票进入深度分析")
         
-        # 第二轮：深度分析（获取历史数据）
+        # 第二轮：深度分析（获取历史数据+基本面）
         all_stocks = []
         
         for i, candidate in enumerate(top_candidates):
@@ -841,8 +1117,15 @@ class StockPredictor:
             # 获取历史数据
             history = self._get_history_data(code)
             
+            # 获取基本面数据（有历史数据的才会继续分析）
+            fund_data = None
+            if history and len(history) >= 20:
+                fund_data = self._get_fundamental_data(code)
+                if fund_data:
+                    fund_data = self._enrich_fund_with_price(fund_data, realtime['price'])
+            
             # 深度分析
-            result = self.analyze_stock(code, name, realtime, history)
+            result = self.analyze_stock(code, name, realtime, history, fund_data)
             if result:
                 result['sector'] = sector
                 all_stocks.append(result)
@@ -867,7 +1150,7 @@ class StockPredictor:
                 'code': s['code'],
                 'name': s['name'],
                 'score': s['score'],
-                'strategy_signals': s['strategy_signals']
+                'strategy_signals': self._build_eval_signals(s)
             } for s in all_stocks]
             self.evaluator.record_prediction(predictions)
         
@@ -897,25 +1180,17 @@ class StockPredictor:
         realtime_data = self._get_realtime_batch(all_codes)
         self.logger.info(f"获取到 {len(realtime_data)} 只股票实时数据")
         
-        # 第一轮：快速筛选
+        # 第一轮：多因子快筛 (准入关卡 + 评分排序)
         candidates = []
         for code, name in self.stock_pool.items():
             if code not in realtime_data:
                 continue
             
             realtime = realtime_data[code]
-            change_pct = realtime.get('change_pct', 0)
             
-            # 快速过滤：跌幅太大的跳过
-            if change_pct < -5:
+            passed, quick_score = self._compute_quick_score(code, realtime)
+            if not passed:
                 continue
-            
-            # 快速评分
-            quick_score = 50
-            if 0 < change_pct < 3:
-                quick_score += 8
-            if realtime['price'] > realtime['open'] and change_pct > 0:
-                quick_score += 5
             
             candidates.append({
                 'code': code,
@@ -924,11 +1199,11 @@ class StockPredictor:
                 'quick_score': quick_score
             })
         
-        # 按快速评分排序，限制数量
+        # 按多因子评分排序，取前 max_stocks 进入深度分析
         candidates.sort(key=lambda x: x['quick_score'], reverse=True)
         candidates = candidates[:max_stocks]
         
-        self.logger.info(f"快速筛选: {len(candidates)} 只股票进入深度分析")
+        self.logger.info(f"多因子快筛: {len(candidates)} 只股票进入深度分析")
         
         # 第二轮：深度分析
         results = []
@@ -940,8 +1215,15 @@ class StockPredictor:
             # 获取历史数据
             history = self._get_history_data(code)
             
+            # 获取基本面数据
+            fund_data = None
+            if history and len(history) >= 20:
+                fund_data = self._get_fundamental_data(code)
+                if fund_data:
+                    fund_data = self._enrich_fund_with_price(fund_data, realtime['price'])
+            
             # 分析
-            result = self.analyze_stock(code, name, realtime, history)
+            result = self.analyze_stock(code, name, realtime, history, fund_data)
             if result and result['score'] >= min_score:
                 results.append(result)
             
@@ -956,27 +1238,13 @@ class StockPredictor:
             'code': s['code'],
             'name': s['name'],
             'score': s['score'],
-            'strategy_signals': s['strategy_signals']
+            'strategy_signals': self._build_eval_signals(s)
         } for s in results]
         self.evaluator.record_prediction(predictions)
         
         self.logger.info(f"扫描完成: {len(results)} 只股票评分 >= {min_score}")
         
         return results
-        
-        self.logger.info(f"全A股扫描完成: {len(results)} 只股票评分 >= {min_score}")
-        
-        # 记录预测
-        predictions = [{
-            'code': s['code'],
-            'name': s['name'],
-            'score': s['score'],
-            'strategy_signals': s['strategy_signals']
-        } for s in results[:max_stocks]]
-        
-        self.evaluator.record_prediction(predictions)
-        
-        return results[:max_stocks]
 
     def generate_full_report(self, all_results: Dict[str, List[Dict]], top_per_sector: int = 3) -> str:
         """生成完整报告"""

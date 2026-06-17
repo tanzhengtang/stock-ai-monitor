@@ -33,13 +33,14 @@ class StrategyEvaluator:
         
         # 策略列表（必须在加载权重之前定义）
         self.strategies = [
-            'ma_cross',      # 均线交叉
-            'rsi_reversal',  # RSI反转
-            'macd_signal',   # MACD信号
-            'kdj_signal',    # KDJ信号
+            'ma_cross',       # 均线交叉
+            'rsi_reversal',   # RSI反转
+            'macd_signal',    # MACD信号
+            'kdj_signal',     # KDJ信号
             'bollinger_band', # 布林带
-            'momentum',      # 动量
-            'volume_price',  # 量价关系
+            'momentum',       # 动量
+            'volume_price',   # 量价关系
+            'fundamental',    # 基本面 (PE/PB/ROE/增长)
         ]
         
         # 加载历史数据
