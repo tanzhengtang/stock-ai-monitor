@@ -359,6 +359,15 @@ class StockPredictor:
             price = realtime_data.get('price', 0)
             open_price = realtime_data.get('open', 0)
             
+            # 创业板优先加分
+            if code.startswith('300') or code.startswith('301'):
+                base_score += 10
+                reasons.append('创业板')
+            
+            # 科创板加分
+            if code.startswith('688'):
+                base_score += 5
+            
             # 涨跌幅评分
             if 0 < change_pct < 2:
                 base_score += 8
