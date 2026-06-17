@@ -447,17 +447,18 @@ class StockPredictor:
         pb = price / fd.get('bvps', 1) if fd.get('bvps', 0) > 0 else 0
         roe = fd.get('roe', 0)
         pg = fd.get('profit_growth', 0)
+        has_fund = len(self._fund_cache) > 0
         
         # 条件②: 小跌但基本面好
-        if not passed and change_pct >= -5 and (0 < pe < 15 or roe > 15):
+        if not passed and has_fund and change_pct >= -5 and (0 < pe < 15 or roe > 15):
             passed = True
         
         # 条件③: 深蹲但极度低估
-        if not passed and change_pct >= -8 and (0 < pe < 10 and roe > 15):
+        if not passed and has_fund and change_pct >= -8 and (0 < pe < 10 and roe > 15):
             passed = True
         
         # 条件④: 高活跃+高质量
-        if not passed and amount > 50000000 and (roe > 20 or pg > 30):
+        if not passed and has_fund and amount > 50000000 and (roe > 20 or pg > 30):
             passed = True
         
         if not passed:
@@ -499,36 +500,36 @@ class StockPredictor:
         elif amount > 30000000:
             tech_score += 5
         
-        # 基本面 (60%)
+        # 基本面 (60%) — 仅在有缓存时计算
         fund_score = 0
-        
-        if 0 < pe < 10:
-            fund_score += 25
-        elif 10 <= pe < 20:
-            fund_score += 15
-        elif 20 <= pe < 40:
-            fund_score += 5
-        
-        if 0 < pb < 1:
-            fund_score += 15
-        elif 1 <= pb < 3:
-            fund_score += 10
-        elif 3 <= pb < 5:
-            fund_score += 5
-        
-        if roe > 20:
-            fund_score += 25
-        elif roe > 10:
-            fund_score += 15
-        elif roe > 5:
-            fund_score += 5
-        
-        if pg > 50:
-            fund_score += 25
-        elif pg > 20:
-            fund_score += 15
-        elif pg > 0:
-            fund_score += 5
+        if has_fund:
+            if 0 < pe < 10:
+                fund_score += 25
+            elif 10 <= pe < 20:
+                fund_score += 15
+            elif 20 <= pe < 40:
+                fund_score += 5
+            
+            if 0 < pb < 1:
+                fund_score += 15
+            elif 1 <= pb < 3:
+                fund_score += 10
+            elif 3 <= pb < 5:
+                fund_score += 5
+            
+            if roe > 20:
+                fund_score += 25
+            elif roe > 10:
+                fund_score += 15
+            elif roe > 5:
+                fund_score += 5
+            
+            if pg > 50:
+                fund_score += 25
+            elif pg > 20:
+                fund_score += 15
+            elif pg > 0:
+                fund_score += 5
         
         total_score = int(tech_score * 0.4 + fund_score * 0.6)
         return True, min(total_score, 100)
