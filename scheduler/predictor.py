@@ -1173,77 +1173,64 @@ class StockPredictor:
         """
         self.logger.info(f"开始全A股扫描...")
         
-        # 批量获取实时数据
-        all_codes = list(self.stock_pool.keys())
-        self.logger.info(f"股票总数: {len(all_codes)}")
-        
-        # 分批获取实时数据
-        realtime_data = self._get_realtime_batch(all_codes)
-        self.logger.info(f"获取到 {len(realtime_data)} 只股票实时数据")
-        
-        # 第一轮：多因子快筛 (准入关卡 + 评分排序)
-        candidates = []
-        for code, name in self.stock_pool.items():
-            if code not in realtime_data:
-                continue
-            
-            realtime = realtime_data[code]
-            
-            passed, quick_score = self._compute_quick_score(code, realtime)
-            if not passed:
-                continue
-            
-            candidates.append({
-                'code': code,
-                'name': name,
-                'realtime': realtime,
-                'quick_score': quick_score
-            })
-        
-        # 按多因子评分排序，取前 max_stocks 进入深度分析
-        candidates.sort(key=lambda x: x['quick_score'], reverse=True)
-        candidates = candidates[:max_stocks]
-        
-        self.logger.info(f"多因子快筛: {len(candidates)} 只股票进入深度分析")
-        
-        # 第二轮：深度分析
         results = []
-        for i, candidate in enumerate(candidates):
-            code = candidate['code']
-            name = candidate['name']
-            realtime = candidate['realtime']
+        try:
+            all_codes = list(self.stock_pool.keys())
+            self.logger.info(f"股票总数: {len(all_codes)}")
             
-            # 获取历史数据
-            history = self._get_history_data(code)
+            realtime_data = self._get_realtime_batch(all_codes)
+            self.logger.info(f"获取到 {len(realtime_data)} 只股票实时数据")
             
-            # 获取基本面数据
-            fund_data = None
-            if history and len(history) >= 20:
-                fund_data = self._get_fundamental_data(code)
-                if fund_data:
-                    fund_data = self._enrich_fund_with_price(fund_data, realtime['price'])
+            candidates = []
+            for code, name in self.stock_pool.items():
+                if code not in realtime_data:
+                    continue
+                realtime = realtime_data[code]
+                passed, quick_score = self._compute_quick_score(code, realtime)
+                if not passed:
+                    continue
+                candidates.append({
+                    'code': code, 'name': name,
+                    'realtime': realtime, 'quick_score': quick_score
+                })
             
-            # 分析
-            result = self.analyze_stock(code, name, realtime, history, fund_data)
-            if result and result['score'] >= min_score:
-                results.append(result)
+            candidates.sort(key=lambda x: x['quick_score'], reverse=True)
+            candidates = candidates[:max_stocks]
+            self.logger.info(f"多因子快筛: {len(candidates)} 只股票进入深度分析")
             
-            if (i + 1) % 100 == 0:
-                self.logger.info(f"已分析 {i + 1}/{len(candidates)} 只")
-        
-        # 按评分排序
-        results.sort(key=lambda x: x['score'], reverse=True)
-        
-        # 记录预测
-        predictions = [{
-            'code': s['code'],
-            'name': s['name'],
-            'score': s['score'],
-            'strategy_signals': self._build_eval_signals(s)
-        } for s in results]
-        self.evaluator.record_prediction(predictions)
-        
-        self.logger.info(f"扫描完成: {len(results)} 只股票评分 >= {min_score}")
+            for i, candidate in enumerate(candidates):
+                try:
+                    code = candidate['code']; name = candidate['name']
+                    realtime = candidate['realtime']
+                    history = self._get_history_data(code)
+                    fund_data = None
+                    if history and len(history) >= 20:
+                        fund_data = self._get_fundamental_data(code)
+                        if fund_data:
+                            fund_data = self._enrich_fund_with_price(fund_data, realtime['price'])
+                    result = self.analyze_stock(code, name, realtime, history, fund_data)
+                    if result and result['score'] >= min_score:
+                        results.append(result)
+                except Exception as e:
+                    self.logger.warning(f"分析 {candidate.get('code','?')} 失败: {e}")
+                
+                if (i + 1) % 100 == 0:
+                    self.logger.info(f"已分析 {i + 1}/{len(candidates)} 只")
+            
+            results.sort(key=lambda x: x['score'], reverse=True)
+            
+        except Exception as e:
+            self.logger.error(f"扫描异常中断: {e}")
+        finally:
+            if results:
+                predictions = [{
+                    'code': s['code'], 'name': s['name'], 'score': s['score'],
+                    'strategy_signals': self._build_eval_signals(s)
+                } for s in results]
+                self.evaluator.record_prediction(predictions)
+                self.logger.info(f"扫描完成: {len(results)} 只股票评分 >= {min_score}")
+            else:
+                self.logger.warning("扫描结果为空，未保存预测记录")
         
         return results
 
