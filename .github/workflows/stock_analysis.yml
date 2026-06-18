@@ -2,14 +2,14 @@ name: Stock Analysis System
 
 on:
   schedule:
-    # 北京时间 02:00 (UTC 18:00) - 刷新股票池
-    - cron: '0 18 * * *'
-    # 北京时间 14:00 (UTC 01:00) - 尾盘预测
-    - cron: '0 1 * * 1-5'
-    # 北京时间 16:00 (UTC 03:00) - 复盘 + 策略更新
-    - cron: '0 3 * * 1-5'
-    # 每周日北京时间 20:00 (UTC 07:00) - GitHub策略搜索
-    - cron: '0 7 * * 0'
+    # 北京时间 12:00 (UTC 04:00) - 刷新股票池
+    - cron: '0 4 * * *'
+    # 北京时间 14:00 (UTC 06:00) - 尾盘预测
+    - cron: '0 6 * * 1-5'
+    # 北京时间 16:00 (UTC 08:00) - 复盘 + 策略更新
+    - cron: '0 8 * * 1-5'
+    # 每周日 北京时间 20:00 (UTC 12:00) - GitHub策略搜索
+    - cron: '0 12 * * 0'
   
   workflow_dispatch:
     inputs:
@@ -30,7 +30,7 @@ jobs:
   refresh-pool:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    if: github.event.schedule == '0 18 * * *' || (github.event_name == 'workflow_dispatch' && github.event.inputs.task == 'refresh')
+    if: github.event.schedule == '0 4 * * *' || (github.event_name == 'workflow_dispatch' && github.event.inputs.task == 'refresh')
     
     steps:
       - name: Checkout code
