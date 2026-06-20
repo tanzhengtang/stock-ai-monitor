@@ -47,7 +47,7 @@ jobs:
           pip install pyyaml requests pandas numpy schedule akshare baostock
       
       - name: Refresh stock pool
-        run: python github_actions_runner.py refresh
+        run: python cli.py refresh
       
       - name: Commit changes
         run: |
@@ -93,7 +93,7 @@ jobs:
           EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
-        run: python github_actions_runner.py scan
+        run: python cli.py scan --all --top 500 --min-score 55 --email
       
       - name: Save prediction history
         run: |
@@ -139,7 +139,7 @@ jobs:
           EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
-        run: python github_actions_runner.py review
+        run: python cli.py review --email
       
       - name: Update strategy weights
         run: python cli.py update

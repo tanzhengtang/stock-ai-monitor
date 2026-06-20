@@ -5,8 +5,10 @@
 
 import argparse
 import sys
+import json
 import logging
 from datetime import datetime
+from pathlib import Path
 
 from utils import setup_logging, get_logger, get_config
 
@@ -14,8 +16,10 @@ from utils import setup_logging, get_logger, get_config
 def cmd_scan(args):
     """扫描市场"""
     from scheduler.predictor import StockPredictor
+    from scheduler.email_bot import EmailBot
     
     logger = get_logger('CLI')
+    config = get_config()
     predictor = StockPredictor(
         fundamental_weight=args.fund_weight,
     )
@@ -31,10 +35,11 @@ def cmd_scan(args):
         print("-" * 70)
         
         for i, stock in enumerate(results[:args.top], 1):
-            fund_str = ""
-            if stock.get('fund_score') is not None:
-                fund_str = f" [技:{stock.get('tech_score',0):.0f} 基:{stock['fund_score']:.0f}]"
             print(f"{i:<3} {stock['code']:<8} {stock['name']:<10} {stock['price']:.2f}{'':<4} {stock['change']:+.2f}%{'':<3} {stock['score']:<6.0f} {stock['reasons'][:60]}")
+        
+        if args.email and results:
+            report = _build_email_report(results, args.top)
+            _send_email_report(report, config, logger)
     else:
         # 按板块扫描
         logger.info("开始按板块扫描...")
@@ -43,11 +48,117 @@ def cmd_scan(args):
         # 生成报告
         report = predictor.generate_full_report(all_results, top_per_sector=args.top)
         print(report)
+        
+        if args.email and all_results:
+            _send_email_report(report, config, logger)
 
 
 def cmd_review(args):
     """复盘"""
     from scheduler.reviewer import StockReviewer
+    
+    logger = get_logger('CLI')
+    logger.info("开始复盘...")
+    
+    reviewer = StockReviewer()
+    pred_file = Path("data/prediction_history.json")
+    
+    if pred_file.exists():
+        history = json.loads(pred_file.read_text('utf-8'))
+        if not history:
+            print("预测历史为空")
+            return
+        
+        latest = history[-1]
+        predictions = latest.get('predictions', [])
+        print(f"复盘日期: {latest.get('date', 'N/A')}, 共 {len(predictions)} 只预测")
+        
+        result = reviewer.review(predictions)
+        report = reviewer.generate_report(result)
+        
+        print(f"\n复盘结果:")
+        print(f"  胜率: {result['win_rate']:.1f}%")
+        print(f"  平均涨幅: {result['avg_change']:.2f}%")
+        for stock in result['stocks']:
+            icon = '✅' if stock['is_win'] else '❌'
+            print(f"  {icon} {stock['code']} {stock['name']}: {stock['change']:+.2f}%")
+        
+        if args.email:
+            _send_email_report(report, get_config(), logger)
+    else:
+        print("没有找到预测历史文件")
+
+
+def _build_email_report(results: list, top_n: int) -> str:
+    """从 StockPredictor 扫描结果生成邮件报告文本"""
+    from datetime import datetime
+    
+    date_str = datetime.now().strftime('%Y-%m-%d %H:%M')
+    top = results[:top_n]
+    
+    report = f"""
+{"=" * 65}
+  AI量化交易系统 - 全A股扫描报告
+  生成时间: {date_str}
+  有效信号: {len(results)} 只 → 精选 Top {len(top)}
+{"=" * 65}
+
+{"─" * 65}
+  Top {len(top)} 精选推荐
+{"─" * 65}
+"""
+    for i, stock in enumerate(top, 1):
+        exp = stock.get('expected_move', {})
+        has_fund = stock.get('has_fundamental', False)
+        report += f"""
+{i:2d}. {stock['code']} {stock['name']}
+    现价: ¥{stock['price']:.2f}  涨跌: {stock['change']:+.2f}%  评分: {stock['score']}
+    信号: {stock.get('reasons', '')}
+    RSI: {stock.get('tech_details', {}).get('rsi', 'N/A')}  """
+        if has_fund:
+            report += f" 技术分={stock.get('tech_score','N/A')} 基本面分={stock.get('fund_score','N/A')}"
+        report += f"""
+    预期涨幅: {exp.get('expected_pct', 0):+.2f}%  目标: ¥{exp.get('target_price', 0):.2f}  止损: ¥{exp.get('stop_loss', 0):.2f}
+"""
+    
+    report += f"""
+{"─" * 65}
+  免责声明
+{"─" * 65}
+  以上分析基于技术指标+基本面+AI规则引擎，仅供参考，不构成投资建议。
+  股市有风险，投资需谨慎。
+
+  系统: stock-ai-monitor v0.1.0
+{"=" * 65}
+"""
+    return report
+
+
+def _send_email_report(report: str, config, logger) -> bool:
+    """发送邮件报告"""
+    from scheduler.email_bot import EmailBot
+    
+    email_cfg = config.email
+    if not email_cfg.sender_email or not email_cfg.receiver_emails:
+        logger.warning("邮件配置不完整，跳过发送")
+        return False
+    
+    bot = EmailBot(
+        smtp_server=email_cfg.smtp_server,
+        smtp_port=email_cfg.smtp_port,
+        sender_email=email_cfg.sender_email,
+        sender_password=email_cfg.sender_password,
+        receiver_emails=[r for r in email_cfg.receiver_emails if r],
+    )
+    
+    from datetime import datetime
+    subject = f"AI量化选股 - {datetime.now().strftime('%m-%d %H:%M')}"
+    ok = bot.send(subject, report)
+    if ok:
+        logger.info(f"邮件发送成功 → {email_cfg.receiver_emails}")
+    else:
+        logger.warning("邮件发送失败")
+    return ok
     
     logger = get_logger('CLI')
     logger.info("开始复盘...")
@@ -244,9 +355,12 @@ def main():
     scan_parser.add_argument('--min-score', type=int, default=55, help='最低评分')
     scan_parser.add_argument('--fund-weight', type=float, default=0.3,
                              help='基本面权重 (0-1, 默认0.3)')
+    scan_parser.add_argument('--email', action='store_true',
+                             help='扫描完成后发送邮件报告')
     
     # review 命令
-    subparsers.add_parser('review', help='复盘昨日预测')
+    review_parser = subparsers.add_parser('review', help='复盘昨日预测')
+    review_parser.add_argument('--email', action='store_true', help='复盘完成后发送邮件报告')
     
     # update 命令
     subparsers.add_parser('update', help='更新策略权重')
