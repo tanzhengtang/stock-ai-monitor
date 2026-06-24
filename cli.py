@@ -85,6 +85,14 @@ def cmd_review(args):
             icon = '✅' if stock['is_win'] else '❌'
             print(f"  {icon} {stock['code']} {stock['name']}: {stock['change']:+.2f}%")
         
+        # 回写实际结果，供策略权重更新使用
+        from strategy_evaluator import StrategyEvaluator
+        evaluator = StrategyEvaluator()
+        results_map = {s['code']: {'change': s['change'], 'is_win': s['is_win']}
+                       for s in result['stocks']}
+        evaluator.record_actual_result(latest['date'], results_map)
+        logger.info(f"已回写 {len(results_map)} 只股票的实际结果")
+        
         if args.email:
             _send_email_report(report, get_config(), logger)
     else:

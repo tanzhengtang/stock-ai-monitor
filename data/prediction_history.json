@@ -19516,7 +19516,9 @@
           "bollinger_band": "neutral",
           "momentum": "buy",
           "volume_price": "neutral"
-        }
+        },
+        "actual_change": 14.034375422925976,
+        "is_win": true
       },
       {
         "code": "002552",
@@ -19530,7 +19532,9 @@
           "bollinger_band": "neutral",
           "momentum": "buy",
           "volume_price": "buy"
-        }
+        },
+        "actual_change": 10.002895193977992,
+        "is_win": true
       },
       {
         "code": "002674",
@@ -19544,7 +19548,9 @@
           "bollinger_band": "neutral",
           "momentum": "buy",
           "volume_price": "buy"
-        }
+        },
+        "actual_change": 10.018467220683279,
+        "is_win": true
       },
       {
         "code": "600011",
@@ -19558,7 +19564,9 @@
           "bollinger_band": "neutral",
           "momentum": "buy",
           "volume_price": "neutral"
-        }
+        },
+        "actual_change": -4.370179948586117,
+        "is_win": false
       },
       {
         "code": "600114",
@@ -19572,7 +19580,9 @@
           "bollinger_band": "neutral",
           "momentum": "buy",
           "volume_price": "neutral"
-        }
+        },
+        "actual_change": 0.23523876734886243,
+        "is_win": true
       },
       {
         "code": "600516",
@@ -19586,7 +19596,9 @@
           "bollinger_band": "neutral",
           "momentum": "buy",
           "volume_price": "neutral"
-        }
+        },
+        "actual_change": -2.689873417721518,
+        "is_win": false
       },
       {
         "code": "600857",
@@ -19600,7 +19612,9 @@
           "bollinger_band": "neutral",
           "momentum": "buy",
           "volume_price": "neutral"
-        }
+        },
+        "actual_change": 4.711347047113464,
+        "is_win": true
       },
       {
         "code": "603268",
@@ -19614,7 +19628,9 @@
           "bollinger_band": "neutral",
           "momentum": "buy",
           "volume_price": "neutral"
-        }
+        },
+        "actual_change": 2.999648753073418,
+        "is_win": true
       },
       {
         "code": "603386",
@@ -19628,7 +19644,9 @@
           "bollinger_band": "neutral",
           "momentum": "buy",
           "volume_price": "neutral"
-        }
+        },
+        "actual_change": 9.994568169473112,
+        "is_win": true
       },
       {
         "code": "603687",
@@ -19642,7 +19660,9 @@
           "bollinger_band": "neutral",
           "momentum": "buy",
           "volume_price": "neutral"
-        }
+        },
+        "actual_change": -2.44565217391304,
+        "is_win": false
       },
       {
         "code": "605018",
