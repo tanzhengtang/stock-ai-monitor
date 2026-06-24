@@ -71,9 +71,11 @@ def cmd_review(args):
         
         latest = history[-1]
         predictions = latest.get('predictions', [])
-        print(f"复盘日期: {latest.get('date', 'N/A')}, 共 {len(predictions)} 只预测")
+        predictions.sort(key=lambda x: x.get('score', 0), reverse=True)
+        top10 = predictions[:10]
+        print(f"复盘日期: {latest.get('date', 'N/A')}, 预测共 {len(predictions)} 只, 复盘前 {len(top10)} 只")
         
-        result = reviewer.review(predictions)
+        result = reviewer.review(top10)
         report = reviewer.generate_report(result)
         
         print(f"\n复盘结果:")

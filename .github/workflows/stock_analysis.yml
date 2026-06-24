@@ -99,7 +99,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/prediction_history.json data/strategy_weights.json || true
+          git add data/prediction_history.json || true
           git diff --staged --quiet || git commit -m "Update prediction history [skip ci]"
           git push || echo "No changes to push"
 
