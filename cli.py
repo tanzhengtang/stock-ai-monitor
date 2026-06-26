@@ -69,11 +69,22 @@ def cmd_review(args):
             print("预测历史为空")
             return
         
-        latest = history[-1]
-        predictions = latest.get('predictions', [])
+        # 取昨天的预测记录 (不是今天, 今天是 scan 刚产生的)
+        today = datetime.now().strftime('%Y-%m-%d')
+        target = None
+        for record in reversed(history):
+            if record['date'] < today:
+                target = record
+                break
+        
+        if not target:
+            print(f"没有找到 {today} 之前的预测记录")
+            return
+        
+        predictions = target.get('predictions', [])
         predictions.sort(key=lambda x: x.get('score', 0), reverse=True)
         top10 = predictions[:10]
-        print(f"复盘日期: {latest.get('date', 'N/A')}, 预测共 {len(predictions)} 只, 复盘前 {len(top10)} 只")
+        print(f"复盘日期: {target['date']} (昨天), 预测共 {len(predictions)} 只, 复盘前 {len(top10)} 只")
         
         result = reviewer.review(top10)
         report = reviewer.generate_report(result)
@@ -90,7 +101,7 @@ def cmd_review(args):
         evaluator = StrategyEvaluator()
         results_map = {s['code']: {'change': s['change'], 'is_win': s['is_win']}
                        for s in result['stocks']}
-        evaluator.record_actual_result(latest['date'], results_map)
+        evaluator.record_actual_result(target['date'], results_map)
         logger.info(f"已回写 {len(results_map)} 只股票的实际结果")
         
         if args.email:

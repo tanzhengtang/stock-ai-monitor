@@ -31179,7 +31179,9 @@
         "score": 70,
         "strategy_signals": {
           "fundamental": "neutral"
-        }
+        },
+        "actual_change": -6.417563858982477,
+        "is_win": false
       },
       {
         "code": "601336",
@@ -31194,7 +31196,9 @@
           "momentum": "buy",
           "volume_price": "neutral",
           "fundamental": "strong_buy"
-        }
+        },
+        "actual_change": -6.052963430012605,
+        "is_win": false
       },
       {
         "code": "601628",
@@ -31209,7 +31213,9 @@
           "momentum": "buy",
           "volume_price": "neutral",
           "fundamental": "strong_buy"
-        }
+        },
+        "actual_change": -5.014909189482248,
+        "is_win": false
       },
       {
         "code": "600109",
@@ -31224,7 +31230,9 @@
           "momentum": "buy",
           "volume_price": "neutral",
           "fundamental": "strong_buy"
-        }
+        },
+        "actual_change": -3.5359116022099477,
+        "is_win": false
       },
       {
         "code": "601211",
@@ -31239,7 +31247,9 @@
           "momentum": "buy",
           "volume_price": "neutral",
           "fundamental": "strong_buy"
-        }
+        },
+        "actual_change": -2.082160945413624,
+        "is_win": false
       },
       {
         "code": "000776",
@@ -31254,7 +31264,9 @@
           "momentum": "buy",
           "volume_price": "neutral",
           "fundamental": "strong_buy"
-        }
+        },
+        "actual_change": -3.4140017286084663,
+        "is_win": false
       },
       {
         "code": "600428",
@@ -31269,7 +31281,9 @@
           "momentum": "buy",
           "volume_price": "neutral",
           "fundamental": "strong_buy"
-        }
+        },
+        "actual_change": -1.1002444987775044,
+        "is_win": false
       },
       {
         "code": "000166",
@@ -31284,7 +31298,9 @@
           "momentum": "buy",
           "volume_price": "neutral",
           "fundamental": "strong_buy"
-        }
+        },
+        "actual_change": -4.347826086956506,
+        "is_win": false
       },
       {
         "code": "600061",
@@ -31299,7 +31315,9 @@
           "momentum": "buy",
           "volume_price": "buy",
           "fundamental": "strong_buy"
-        }
+        },
+        "actual_change": -3.9823008849557593,
+        "is_win": false
       },
       {
         "code": "002926",
@@ -31314,7 +31332,9 @@
           "momentum": "buy",
           "volume_price": "neutral",
           "fundamental": "strong_buy"
-        }
+        },
+        "actual_change": -3.638497652582145,
+        "is_win": false
       },
       {
         "code": "600030",
