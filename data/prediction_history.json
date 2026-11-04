@@ -1,1403 +1,5 @@
 [
   {
-    "date": "2026-08-05",
-    "timestamp": "2026-08-05T08:54:01.612246",
-    "predictions": [
-      {
-        "code": "301583",
-        "name": "托伦斯",
-        "score": 70,
-        "strategy_signals": {
-          "fundamental": "neutral"
-        }
-      },
-      {
-        "code": "688025",
-        "name": "杰普特",
-        "score": 65,
-        "strategy_signals": {
-          "fundamental": "neutral"
-        }
-      },
-      {
-        "code": "688095",
-        "name": "福昕软件",
-        "score": 65,
-        "strategy_signals": {
-          "fundamental": "neutral"
-        }
-      },
-      {
-        "code": "688167",
-        "name": "炬光科技",
-        "score": 65,
-        "strategy_signals": {
-          "fundamental": "neutral"
-        }
-      },
-      {
-        "code": "688228",
-        "name": "开普云",
-        "score": 65,
-        "strategy_signals": {
-          "fundamental": "neutral"
-        }
-      },
-      {
-        "code": "688418",
-        "name": "震有科技",
-        "score": 65,
-        "strategy_signals": {
-          "fundamental": "neutral"
-        }
-      },
-      {
-        "code": "688669",
-        "name": "聚石化学",
-        "score": 65,
-        "strategy_signals": {
-          "fundamental": "neutral"
-        }
-      },
-      {
-        "code": "688806",
-        "name": "泰诺麦博",
-        "score": 65,
-        "strategy_signals": {
-          "fundamental": "neutral"
-        }
-      },
-      {
-        "code": "300662",
-        "name": "科锐国际",
-        "score": 65,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "sell",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600686",
-        "name": "金龙汽车",
-        "score": 64,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "601002",
-        "name": "晋亿实业",
-        "score": 64,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "sell",
-          "momentum": "buy",
-          "volume_price": "buy",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "000807",
-        "name": "云铝股份",
-        "score": 64,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002432",
-        "name": "九安医疗",
-        "score": 64,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002440",
-        "name": "闰土股份",
-        "score": 64,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600388",
-        "name": "龙净环保",
-        "score": 64,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "601339",
-        "name": "百隆东方",
-        "score": 63,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "603259",
-        "name": "药明康德",
-        "score": 63,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "sell",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "sell",
-          "momentum": "buy",
-          "volume_price": "buy",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "000923",
-        "name": "河钢资源",
-        "score": 63,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002545",
-        "name": "东方铁塔",
-        "score": 63,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002895",
-        "name": "川恒股份",
-        "score": 63,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "sell",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300505",
-        "name": "川金诺",
-        "score": 63,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600801",
-        "name": "华新建材",
-        "score": 63,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300119",
-        "name": "瑞普生物",
-        "score": 62,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "sell",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600233",
-        "name": "圆通速递",
-        "score": 62,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600428",
-        "name": "中远海特",
-        "score": 62,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "sell",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "601233",
-        "name": "桐昆股份",
-        "score": 61,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "603700",
-        "name": "宁水集团",
-        "score": 61,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "buy",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002444",
-        "name": "巨星科技",
-        "score": 61,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300435",
-        "name": "中泰股份",
-        "score": 61,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "603112",
-        "name": "华翔股份",
-        "score": 60,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002083",
-        "name": "孚日股份",
-        "score": 60,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002237",
-        "name": "恒邦股份",
-        "score": 60,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "sell",
-          "momentum": "buy",
-          "volume_price": "buy",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002925",
-        "name": "盈趣科技",
-        "score": 60,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "buy",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300130",
-        "name": "新国都",
-        "score": 60,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "sell",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300871",
-        "name": "回盛生物",
-        "score": 60,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "buy",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600338",
-        "name": "西藏珠峰",
-        "score": 60,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "601021",
-        "name": "春秋航空",
-        "score": 60,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "601579",
-        "name": "会稽山",
-        "score": 60,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "601609",
-        "name": "金田股份",
-        "score": 60,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600909",
-        "name": "华安证券",
-        "score": 59,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "603296",
-        "name": "华勤技术",
-        "score": 59,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002539",
-        "name": "云图控股",
-        "score": 59,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "sell",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300456",
-        "name": "赛微电子",
-        "score": 59,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "301031",
-        "name": "中熔电气",
-        "score": 59,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "301305",
-        "name": "朗坤科技",
-        "score": 59,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600096",
-        "name": "云天化",
-        "score": 59,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600150",
-        "name": "中国船舶",
-        "score": 59,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600346",
-        "name": "恒力石化",
-        "score": 59,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "sell",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "601020",
-        "name": "华钰矿业",
-        "score": 59,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600580",
-        "name": "卧龙电驱",
-        "score": 58,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "sell",
-          "momentum": "buy",
-          "volume_price": "buy",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "688023",
-        "name": "安恒信息",
-        "score": 58,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "sell",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "688117",
-        "name": "圣诺生物",
-        "score": 58,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "buy",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002028",
-        "name": "思源电气",
-        "score": 58,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300442",
-        "name": "润泽科技",
-        "score": 58,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600661",
-        "name": "昂立教育",
-        "score": 57,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "sell",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "sell",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "603713",
-        "name": "密尔克卫",
-        "score": 57,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "688155",
-        "name": "先惠技术",
-        "score": 57,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "001256",
-        "name": "炜冈科技",
-        "score": 57,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "buy",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002291",
-        "name": "遥望科技",
-        "score": 57,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "sell",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "sell",
-          "momentum": "buy",
-          "volume_price": "buy",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600063",
-        "name": "皖维高新",
-        "score": 57,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600458",
-        "name": "时代新材",
-        "score": 57,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600797",
-        "name": "浙大网新",
-        "score": 57,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "buy",
-          "fundamental": "buy"
-        }
-      },
-      {
-        "code": "601958",
-        "name": "金钼股份",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "buy",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "601975",
-        "name": "招商南油",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "sell",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "603031",
-        "name": "安孚科技",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "buy",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "688049",
-        "name": "炬芯科技",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "000035",
-        "name": "中国天楹",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "buy"
-        }
-      },
-      {
-        "code": "000733",
-        "name": "振华科技",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "001399",
-        "name": "惠科股份",
-        "score": 56,
-        "strategy_signals": {
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300033",
-        "name": "同花顺",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "sell",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300534",
-        "name": "陇神戎发",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "buy"
-        }
-      },
-      {
-        "code": "300634",
-        "name": "彩讯股份",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "sell",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300684",
-        "name": "中石科技",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "strong_buy",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300697",
-        "name": "电工合金",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "sell",
-          "momentum": "neutral",
-          "volume_price": "buy",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300766",
-        "name": "每日互动",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "buy"
-        }
-      },
-      {
-        "code": "301080",
-        "name": "百普赛斯",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "301358",
-        "name": "湖南裕能",
-        "score": 56,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600160",
-        "name": "巨化股份",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600186",
-        "name": "莲花控股",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "buy",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "603067",
-        "name": "振华股份",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "603162",
-        "name": "海通发展",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "buy"
-        }
-      },
-      {
-        "code": "603341",
-        "name": "龙旗科技",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "buy",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "603725",
-        "name": "天安新材",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "strong_buy",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "688301",
-        "name": "奕瑞科技",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "001896",
-        "name": "豫能控股",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002126",
-        "name": "银轮股份",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "buy",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "002669",
-        "name": "康达新材",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300041",
-        "name": "回天新材",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300256",
-        "name": "星星科技",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "sell",
-          "momentum": "buy",
-          "volume_price": "buy",
-          "fundamental": "buy"
-        }
-      },
-      {
-        "code": "300643",
-        "name": "万通智控",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "neutral",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300677",
-        "name": "英科医疗",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "buy",
-          "rsi_reversal": "neutral",
-          "macd_signal": "buy",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "buy",
-          "volume_price": "neutral",
-          "fundamental": "buy"
-        }
-      },
-      {
-        "code": "300836",
-        "name": "佰奥智能",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "buy",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "300990",
-        "name": "同飞股份",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "buy",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "301397",
-        "name": "溯联股份",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "sell",
-          "rsi_reversal": "strong_buy",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "301682",
-        "name": "宏明电子",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "neutral",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600114",
-        "name": "东睦股份",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      },
-      {
-        "code": "600366",
-        "name": "宁波韵升",
-        "score": 55,
-        "strategy_signals": {
-          "ma_cross": "neutral",
-          "rsi_reversal": "neutral",
-          "macd_signal": "sell",
-          "kdj_signal": "sell",
-          "bollinger_band": "neutral",
-          "momentum": "sell",
-          "volume_price": "neutral",
-          "fundamental": "strong_buy"
-        }
-      }
-    ]
-  },
-  {
     "date": "2026-08-06",
     "timestamp": "2026-08-06T08:55:29.526070",
     "predictions": [
@@ -180195,6 +178797,2022 @@
       {
         "code": "600111",
         "name": "北方稀土",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      }
+    ]
+  },
+  {
+    "date": "2026-11-04",
+    "timestamp": "2026-11-04T14:12:04.516816",
+    "predictions": [
+      {
+        "code": "688648",
+        "name": "中邮科技",
+        "score": 64,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603993",
+        "name": "洛阳钼业",
+        "score": 63,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002545",
+        "name": "东方铁塔",
+        "score": 63,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002734",
+        "name": "利民股份",
+        "score": 63,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300435",
+        "name": "中泰股份",
+        "score": 63,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300893",
+        "name": "松原安全",
+        "score": 63,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "605305",
+        "name": "中际联合",
+        "score": 62,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300358",
+        "name": "楚天科技",
+        "score": 62,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300850",
+        "name": "新强联",
+        "score": 62,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "601107",
+        "name": "四川成渝",
+        "score": 61,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "sell",
+          "bollinger_band": "sell",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603867",
+        "name": "新化股份",
+        "score": 61,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603890",
+        "name": "春秋电子",
+        "score": 61,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688136",
+        "name": "科兴制药",
+        "score": 61,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "buy",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688578",
+        "name": "艾力斯",
+        "score": 61,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "000887",
+        "name": "中鼎股份",
+        "score": 61,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002823",
+        "name": "凯中精密",
+        "score": 61,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002970",
+        "name": "锐明技术",
+        "score": 61,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300488",
+        "name": "恒锋工具",
+        "score": 61,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "601609",
+        "name": "金田股份",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "601811",
+        "name": "新华文轩",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603166",
+        "name": "福达股份",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603418",
+        "name": "友升股份",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603876",
+        "name": "鼎胜新材",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688213",
+        "name": "思特威",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002202",
+        "name": "金风科技",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002245",
+        "name": "蔚蓝锂芯",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002611",
+        "name": "东方精工",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002624",
+        "name": "完美世界",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "sell",
+          "bollinger_band": "sell",
+          "momentum": "buy",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002803",
+        "name": "吉宏股份",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "buy",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300409",
+        "name": "道氏技术",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300434",
+        "name": "金石亚药",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300443",
+        "name": "金雷股份",
+        "score": 60,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "600160",
+        "name": "巨化股份",
+        "score": 59,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "600563",
+        "name": "法拉电子",
+        "score": 59,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603448",
+        "name": "天博智能",
+        "score": 59,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603699",
+        "name": "纽威股份",
+        "score": 59,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603901",
+        "name": "永创智能",
+        "score": 59,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "sell",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688208",
+        "name": "道通科技",
+        "score": 59,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "001210",
+        "name": "金房能源",
+        "score": 59,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002307",
+        "name": "北新路桥",
+        "score": 59,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002917",
+        "name": "金奥博",
+        "score": 59,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300130",
+        "name": "新国都",
+        "score": 59,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300296",
+        "name": "利亚德",
+        "score": 59,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "601061",
+        "name": "中信金属",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603129",
+        "name": "春风动力",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "sell",
+          "macd_signal": "buy",
+          "kdj_signal": "sell",
+          "bollinger_band": "sell",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603160",
+        "name": "汇顶科技",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "sell",
+          "macd_signal": "buy",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603341",
+        "name": "龙旗科技",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603402",
+        "name": "陕西旅游",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603530",
+        "name": "神马电力",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603583",
+        "name": "捷昌驱动",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603928",
+        "name": "兴业股份",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688155",
+        "name": "先惠技术",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688612",
+        "name": "威迈斯",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "000923",
+        "name": "河钢资源",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002050",
+        "name": "三花智控",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002056",
+        "name": "横店东磁",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002203",
+        "name": "海亮股份",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002472",
+        "name": "双环传动",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "sell",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002669",
+        "name": "康达新材",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002782",
+        "name": "可立克",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002831",
+        "name": "裕同科技",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "sell",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300357",
+        "name": "我武生物",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "sell",
+          "macd_signal": "buy",
+          "kdj_signal": "sell",
+          "bollinger_band": "sell",
+          "momentum": "buy",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300611",
+        "name": "美力科技",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "buy",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300690",
+        "name": "双一科技",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300733",
+        "name": "西菱动力",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300780",
+        "name": "德恩精工",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300873",
+        "name": "海晨股份",
+        "score": 58,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "600580",
+        "name": "卧龙电驱",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "601177",
+        "name": "杭齿前进",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "601233",
+        "name": "桐昆股份",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "sell",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "sell",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603185",
+        "name": "弘元绿能",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603328",
+        "name": "依顿电子",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603370",
+        "name": "华新精科",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "buy",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "605117",
+        "name": "德业股份",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688088",
+        "name": "虹软科技",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688636",
+        "name": "智明达",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "001216",
+        "name": "华瓷股份",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "buy",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002283",
+        "name": "天润工业",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002606",
+        "name": "大连电瓷",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300017",
+        "name": "网宿科技",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "buy"
+        }
+      },
+      {
+        "code": "300148",
+        "name": "天舟文化",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300196",
+        "name": "长海股份",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300314",
+        "name": "戴维医疗",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300403",
+        "name": "汉宇集团",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300652",
+        "name": "雷迪克",
+        "score": 57,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "600288",
+        "name": "大恒科技",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "600392",
+        "name": "盛和资源",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "601218",
+        "name": "吉鑫科技",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "601778",
+        "name": "晶科科技",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "601865",
+        "name": "福莱特",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "601949",
+        "name": "中国出版",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603090",
+        "name": "宏盛股份",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603466",
+        "name": "风语筑",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "buy"
+        }
+      },
+      {
+        "code": "688084",
+        "name": "晶品特装",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688621",
+        "name": "阳光诺和",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688692",
+        "name": "达梦数据",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688772",
+        "name": "珠海冠宇",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "000559",
+        "name": "万向钱潮",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "sell",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "buy"
+        }
+      },
+      {
+        "code": "000737",
+        "name": "北方铜业",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "001896",
+        "name": "豫能控股",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002460",
+        "name": "赣锋锂业",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002600",
+        "name": "领益智造",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "sell",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002664",
+        "name": "信质集团",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300033",
+        "name": "同花顺",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "sell",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300073",
+        "name": "当升科技",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300214",
+        "name": "日科化学",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300369",
+        "name": "绿盟科技",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "buy"
+        }
+      },
+      {
+        "code": "300444",
+        "name": "双杰电气",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300457",
+        "name": "赢合科技",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300466",
+        "name": "赛摩智能",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "buy"
+        }
+      },
+      {
+        "code": "300490",
+        "name": "华自科技",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "strong_buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300539",
+        "name": "横河精密",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "buy"
+        }
+      },
+      {
+        "code": "300809",
+        "name": "华辰装备",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300905",
+        "name": "宝丽迪",
+        "score": 56,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "600186",
+        "name": "XD莲花控",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "600770",
+        "name": "综艺股份",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603132",
+        "name": "金徽股份",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603516",
+        "name": "淳中科技",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "603997",
+        "name": "继峰股份",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688006",
+        "name": "杭可科技",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688275",
+        "name": "万润新能",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "688349",
+        "name": "三一重能",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "sell",
+          "macd_signal": "buy",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "buy",
+          "fundamental": "buy"
+        }
+      },
+      {
+        "code": "688360",
+        "name": "德马科技",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "buy"
+        }
+      },
+      {
+        "code": "002757",
+        "name": "南兴股份",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002773",
+        "name": "康弘药业",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "neutral",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "002779",
+        "name": "中坚科技",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "buy"
+        }
+      },
+      {
+        "code": "300045",
+        "name": "华力创通",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "buy",
+          "rsi_reversal": "sell",
+          "macd_signal": "buy",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "buy"
+        }
+      },
+      {
+        "code": "300129",
+        "name": "泰胜风能",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300189",
+        "name": "神农种业",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "buy",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300450",
+        "name": "先导智能",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "sell",
+          "kdj_signal": "sell",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300496",
+        "name": "中科创达",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "buy"
+        }
+      },
+      {
+        "code": "300562",
+        "name": "乐心股份",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "sell",
+          "rsi_reversal": "buy",
+          "macd_signal": "sell",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "sell",
+          "volume_price": "neutral",
+          "fundamental": "strong_buy"
+        }
+      },
+      {
+        "code": "300660",
+        "name": "江苏雷利",
+        "score": 55,
+        "strategy_signals": {
+          "ma_cross": "neutral",
+          "rsi_reversal": "neutral",
+          "macd_signal": "buy",
+          "kdj_signal": "neutral",
+          "bollinger_band": "neutral",
+          "momentum": "buy",
+          "volume_price": "neutral",
+          "fundamental": "buy"
+        }
+      },
+      {
+        "code": "300748",
+        "name": "金力永磁",
         "score": 55,
         "strategy_signals": {
           "ma_cross": "neutral",
